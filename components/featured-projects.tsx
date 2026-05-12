@@ -1,119 +1,197 @@
-"use client"
+import Link from "next/link"
 
-import { useState } from "react"
+const domains = [
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
-
-const projects = [
   {
-    title: "Smart Stair Cleaning Robot",
-    category: "Robotics",
-    budget: "₹18,000",
-    description:
-      "Autonomous stair cleaning robot with obstacle detection and water spray mechanism.",
+    title: "Mechanical Engineering",
+    image:
+      "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?q=80&w=1200&auto=format&fit=crop",
   },
 
   {
-    title: "AI Attendance System",
-    category: "AI/ML",
-    budget: "₹12,000",
-    description:
-      "Face recognition based attendance management system using AI.",
+    title: "Electronics & Communication",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
   },
 
   {
-    title: "IoT Home Automation",
-    category: "IoT",
-    budget: "₹10,000",
-    description:
-      "Smart home automation system controlled using mobile application.",
+    title: "Electrical Engineering",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
   },
+
+  {
+    title: "AI / Machine Learning",
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
+  },
+
+  {
+    title: "Robotics Projects",
+    image:
+      "https://images.unsplash.com/photo-1561144257-e32e8efc6c4f?q=80&w=1200&auto=format&fit=crop",
+  },
+
+  {
+    title: "IoT Based Systems",
+    image:
+      "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200&auto=format&fit=crop",
+  },
+
 ]
 
 export default function FeaturedProjects() {
 
-  const [selectedProject, setSelectedProject] =
-    useState<any>(null)
-
   return (
+
     <section
-      id="projects"
-      className="py-32"
+      className="
+      bg-white
+      py-24
+      "
     >
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div
+        className="
+        mx-auto
+        max-w-7xl
+        px-6
+        "
+      >
+
+        {/* HEADER */}
 
         <div className="text-center">
 
-          <h2 className="text-5xl font-black">
-            Featured{" "}
-            <span className="gradient-text">
-              Projects
-            </span>
+          <div
+            className="
+            inline-flex
+            rounded-full
+            bg-blue-100
+            px-4
+            py-2
+            text-sm
+            font-medium
+            text-blue-700
+            "
+          >
+            PROJECT DOMAINS
+          </div>
+
+          <h2
+            className="
+            mt-6
+            text-5xl
+            font-bold
+            text-gray-900
+            "
+          >
+            Explore Engineering Domains
           </h2>
+
+          <p
+            className="
+            mx-auto
+            mt-6
+            max-w-3xl
+            text-lg
+            leading-8
+            text-gray-600
+            "
+          >
+            Discover innovative engineering domains,
+            prototypes, automation systems and custom
+            project solutions developed by ProjexaHub.
+          </p>
 
         </div>
 
-        <div className="mt-20 grid gap-8 md:grid-cols-3">
+        {/* DOMAIN CARDS */}
 
-          {projects.map((project, i) => (
+        <div
+          className="
+          mt-20
+          grid
+          gap-8
+
+          md:grid-cols-2
+          lg:grid-cols-3
+          "
+        >
+
+          {domains.map((domain, i) => (
 
             <div
               key={i}
 
-              onClick={() => setSelectedProject(project)}
-
               className="
-              glass
-              cursor-pointer
-              rounded-3xl
               overflow-hidden
-              transition
+              rounded-3xl
+              border
+              border-gray-200
+              bg-white
+              shadow-sm
+              transition-all
+              duration-300
               hover:-translate-y-2
+              hover:shadow-xl
               "
             >
 
-              <div className="
-              h-56
-              bg-gradient-to-r
-              from-blue-600/30
-              to-purple-600/30
-              " />
+              <img
+                src={domain.image}
 
-              <div className="p-8">
+                alt={domain.title}
 
-                <div className="
-                mb-4
-                inline-flex
-                rounded-full
-                bg-blue-500/10
-                px-3 py-1
-                text-sm
-                text-blue-400
-                ">
-                  {project.category}
-                </div>
+                className="
+                h-64
+                w-full
+                object-cover
+                "
+              />
 
-                <h3 className="text-2xl font-bold">
-                  {project.title}
+              <div className="p-6">
+
+                <h3
+                  className="
+                  text-2xl
+                  font-bold
+                  text-gray-900
+                  "
+                >
+                  {domain.title}
                 </h3>
 
-                <p className="mt-4 text-slate-400">
-                  Premium engineering project with complete implementation support.
+                <p
+                  className="
+                  mt-4
+                  leading-7
+                  text-gray-600
+                  "
+                >
+                  Explore innovative projects,
+                  prototypes and real-world
+                  engineering implementations.
                 </p>
 
-                <div className="mt-6">
+                <Link href="/projects">
 
-                  <span className="text-xl font-bold text-white">
-                    {project.budget}
-                  </span>
+                  <button
+                    className="
+                    mt-6
+                    rounded-xl
+                    bg-black
+                    px-6
+                    py-3
+                    text-white
+                    transition
+                    hover:bg-gray-800
+                    "
+                  >
+                    Explore Projects
+                  </button>
 
-                </div>
+                </Link>
 
               </div>
 
@@ -125,65 +203,8 @@ export default function FeaturedProjects() {
 
       </div>
 
-      <Dialog
-        open={!!selectedProject}
-        onOpenChange={() => setSelectedProject(null)}
-      >
-
-        <DialogContent
-          className="
-          border-white/10
-          bg-[#020617]
-          text-white
-          "
-        >
-
-          <DialogHeader>
-
-            <DialogTitle className="text-3xl font-black">
-              {selectedProject?.title}
-            </DialogTitle>
-
-          </DialogHeader>
-
-          <div className="mt-6 space-y-4">
-
-            <div>
-              <h3 className="font-bold text-blue-400">
-                Category
-              </h3>
-
-              <p className="text-slate-300">
-                {selectedProject?.category}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-blue-400">
-                Budget
-              </h3>
-
-              <p className="text-slate-300">
-                {selectedProject?.budget}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-blue-400">
-                Description
-              </h3>
-
-              <p className="text-slate-300">
-                {selectedProject?.description}
-              </p>
-            </div>
-
-          </div>
-
-        </DialogContent>
-
-      </Dialog>
-
     </section>
+
   )
+
 }

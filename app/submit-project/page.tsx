@@ -11,7 +11,8 @@ import { Button } from "@/components/ui/button"
 
 export default function SubmitProjectPage() {
 
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] =
+    useState(false)
 
   function handleSubmit() {
 
@@ -20,13 +21,13 @@ export default function SubmitProjectPage() {
   }
 
   return (
+
     <main
       className="
       min-h-screen
-      bg-[#060816]
+      bg-gray-50
       px-6
       py-32
-      text-white
       "
     >
 
@@ -41,49 +42,77 @@ export default function SubmitProjectPage() {
 
           <>
 
+            {/* HEADER */}
+
             <div className="text-center">
+
+              <div
+                className="
+                inline-flex
+                rounded-full
+                bg-blue-100
+                px-4
+                py-2
+                text-sm
+                font-medium
+                text-blue-700
+                "
+              >
+                SUBMIT PROJECT
+              </div>
 
               <h1
                 className="
+                mt-6
                 text-5xl
-                font-black
+                font-bold
+                leading-tight
+                text-gray-900
 
-                md:text-7xl
+                md:text-6xl
                 "
               >
-
-                Submit Your{" "}
-
-                <span className="gradient-text">
-                  Project Idea
-                </span>
-
+                Submit Your
+                <br />
+                Project Idea
               </h1>
 
               <p
                 className="
+                mx-auto
                 mt-6
+                max-w-3xl
                 text-lg
-                text-slate-400
+                leading-8
+                text-gray-600
                 "
               >
-                Tell ProjexaHub about your project requirements and our team will contact you.
+                Tell ProjexaHub about your engineering project
+                requirements and our team will contact you
+                with the best possible solution.
               </p>
 
             </div>
 
+            {/* FORM */}
+
             <div
               className="
-              glass
               mt-16
-              rounded-[40px]
+              rounded-3xl
+              border
+              border-gray-200
+              bg-white
               p-10
+              shadow-sm
               "
             >
 
               <div
                 className="
-                grid gap-6
+                grid
+                gap-6
+
                 md:grid-cols-2
                 "
               >
@@ -92,14 +121,14 @@ export default function SubmitProjectPage() {
                   placeholder="Full Name"
 
                   className="
-                  rounded-2xl
-                  border border-white/10
-                  bg-white/[0.05]
-
-                  p-5
-                  text-white
-
+                  rounded-xl
+                  border
+                  border-gray-300
+                  bg-white
+                  p-4
+                  text-black
                   outline-none
+                  focus:border-black
                   "
                 />
 
@@ -107,14 +136,14 @@ export default function SubmitProjectPage() {
                   placeholder="College Name"
 
                   className="
-                  rounded-2xl
-                  border border-white/10
-                  bg-white/[0.05]
-
-                  p-5
-                  text-white
-
+                  rounded-xl
+                  border
+                  border-gray-300
+                  bg-white
+                  p-4
+                  text-black
                   outline-none
+                  focus:border-black
                   "
                 />
 
@@ -122,27 +151,27 @@ export default function SubmitProjectPage() {
                   placeholder="Phone Number"
 
                   className="
-                  rounded-2xl
-                  border border-white/10
-                  bg-white/[0.05]
-
-                  p-5
-                  text-white
-
+                  rounded-xl
+                  border
+                  border-gray-300
+                  bg-white
+                  p-4
+                  text-black
                   outline-none
+                  focus:border-black
                   "
                 />
 
                 <select
                   className="
-                  rounded-2xl
-                  border border-white/10
-                  bg-[#0f172a]
-
-                  p-5
-                  text-white
-
+                  rounded-xl
+                  border
+                  border-gray-300
+                  bg-white
+                  p-4
+                  text-black
                   outline-none
+                  focus:border-black
                   "
                 >
 
@@ -176,14 +205,14 @@ export default function SubmitProjectPage() {
                   placeholder="Expected Budget"
 
                   className="
-                  rounded-2xl
-                  border border-white/10
-                  bg-white/[0.05]
-
-                  p-5
-                  text-white
-
+                  rounded-xl
+                  border
+                  border-gray-300
+                  bg-white
+                  p-4
+                  text-black
                   outline-none
+                  focus:border-black
                   "
                 />
 
@@ -191,14 +220,14 @@ export default function SubmitProjectPage() {
                   placeholder="Project Deadline"
 
                   className="
-                  rounded-2xl
-                  border border-white/10
-                  bg-white/[0.05]
-
-                  p-5
-                  text-white
-
+                  rounded-xl
+                  border
+                  border-gray-300
+                  bg-white
+                  p-4
+                  text-black
                   outline-none
+                  focus:border-black
                   "
                 />
 
@@ -213,25 +242,31 @@ export default function SubmitProjectPage() {
                 mt-6
                 w-full
 
-                rounded-2xl
-                border border-white/10
-                bg-white/[0.05]
+                rounded-xl
+                border
+                border-gray-300
+                bg-white
 
-                p-5
-                text-white
+                p-4
+                text-black
 
                 outline-none
+                focus:border-black
                 "
               />
+
+              {/* FILE UPLOAD */}
 
               <div
                 className="
                 mt-6
 
-                rounded-[32px]
-                border border-dashed border-white/10
+                rounded-3xl
+                border
+                border-dashed
+                border-gray-300
 
-                bg-white/[0.03]
+                bg-gray-50
 
                 p-10
                 text-center
@@ -248,7 +283,8 @@ export default function SubmitProjectPage() {
                   justify-center
 
                   rounded-2xl
-                  bg-white/[0.05]
+
+                  bg-black
                   "
                 >
 
@@ -256,7 +292,7 @@ export default function SubmitProjectPage() {
                     className="
                     h-8
                     w-8
-                    text-slate-300
+                    text-white
                     "
                   />
 
@@ -266,7 +302,8 @@ export default function SubmitProjectPage() {
                   className="
                   mt-6
                   text-lg
-                  text-slate-300
+                  font-medium
+                  text-gray-900
                   "
                 >
                   Upload Project Files
@@ -276,13 +313,15 @@ export default function SubmitProjectPage() {
                   className="
                   mt-2
                   text-sm
-                  text-slate-500
+                  text-gray-500
                   "
                 >
                   PDF, DOCX, PPT, ZIP (Coming Soon)
                 </p>
 
               </div>
+
+              {/* BUTTON */}
 
               <Button
                 onClick={handleSubmit}
@@ -291,16 +330,15 @@ export default function SubmitProjectPage() {
                 mt-8
                 w-full
 
-                rounded-2xl
-                bg-gradient-to-r
-                from-blue-600
-                to-purple-600
+                rounded-xl
+
+                bg-black
 
                 py-6
                 text-lg
+                text-white
 
-                transition
-                hover:scale-[1.01]
+                hover:bg-gray-800
                 "
               >
                 Submit Project
@@ -314,13 +352,19 @@ export default function SubmitProjectPage() {
 
           <div
             className="
-            glass
             mx-auto
             max-w-3xl
 
-            rounded-[40px]
+            rounded-3xl
+            border
+            border-gray-200
+
+            bg-white
+
             p-16
             text-center
+
+            shadow-sm
             "
           >
 
@@ -334,7 +378,8 @@ export default function SubmitProjectPage() {
               justify-center
 
               rounded-full
-              bg-green-500/10
+
+              bg-green-100
               "
             >
 
@@ -342,7 +387,7 @@ export default function SubmitProjectPage() {
                 className="
                 h-14
                 w-14
-                text-green-400
+                text-green-600
                 "
               />
 
@@ -352,7 +397,8 @@ export default function SubmitProjectPage() {
               className="
               mt-8
               text-5xl
-              font-black
+              font-bold
+              text-gray-900
               "
             >
               Project Submitted
@@ -362,7 +408,8 @@ export default function SubmitProjectPage() {
               className="
               mt-6
               text-lg
-              text-slate-400
+              leading-8
+              text-gray-600
               "
             >
               Thank you for submitting your project idea.
@@ -378,14 +425,16 @@ export default function SubmitProjectPage() {
               className="
               mt-10
 
-              rounded-2xl
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
+              rounded-xl
+
+              bg-black
 
               px-8
               py-6
               text-lg
+              text-white
+
+              hover:bg-gray-800
               "
             >
               Submit Another Project
@@ -398,5 +447,6 @@ export default function SubmitProjectPage() {
       </div>
 
     </main>
+
   )
 }

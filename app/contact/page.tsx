@@ -7,17 +7,17 @@ import {
   MessageCircle,
 } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-
 export default function ContactPage() {
+
   return (
+
     <main
       className="
       min-h-screen
-      bg-[#060816]
+      bg-[#f8fafc]
       px-6
       py-32
-      text-white
+      text-black
       "
     >
 
@@ -28,67 +28,103 @@ export default function ContactPage() {
         "
       >
 
+        {/* HEADER */}
+
         <div className="text-center">
+
+          <div
+            className="
+            inline-flex
+            rounded-full
+            bg-blue-100
+            px-5
+            py-2
+            text-sm
+            font-medium
+            text-blue-700
+            "
+          >
+            CONTACT PROJEXAHUB
+          </div>
 
           <h1
             className="
-            text-5xl
+            mt-8
+            text-6xl
             font-black
-
-            md:text-7xl
+            leading-tight
             "
           >
-
-            Contact{" "}
-
-            <span className="gradient-text">
-              ProjexaHub
-            </span>
-
+            Let’s Build
+            <br />
+            Something Great
           </h1>
 
           <p
             className="
-            mt-6
-            text-lg
-            text-slate-400
+            mx-auto
+            mt-8
+            max-w-3xl
+            text-xl
+            leading-9
+            text-gray-600
             "
           >
-            Get in touch with our team for engineering project solutions.
+            Contact our team for engineering
+            projects, AI solutions, IoT systems,
+            robotics and technical guidance.
           </p>
 
         </div>
 
+        {/* MAIN GRID */}
+
         <div
           className="
-          mt-20
-          grid gap-10
+          mt-24
+          grid
+          gap-10
 
           lg:grid-cols-2
           "
         >
 
+          {/* CONTACT FORM */}
+
           <div
             className="
-            glass
-            rounded-[40px]
+            rounded-[32px]
+            border
+            border-gray-200
+            bg-white
             p-10
+            shadow-sm
             "
           >
 
             <h2
               className="
-              text-3xl
+              text-4xl
               font-black
               "
             >
               Send Message
             </h2>
 
+            <p
+              className="
+              mt-4
+              text-gray-600
+              "
+            >
+              Fill your details and our team will contact you soon.
+            </p>
+
             <div
               className="
-              mt-8
-              grid gap-6
+              mt-10
+              grid
+              gap-6
               "
             >
 
@@ -96,136 +132,141 @@ export default function ContactPage() {
                 placeholder="Full Name"
 
                 className="
+                h-14
                 rounded-2xl
-                border border-white/10
-                bg-white/[0.05]
-
-                p-5
-                text-white
-
+                border
+                border-gray-300
+                px-5
                 outline-none
                 "
               />
 
               <input
-                type="email"
-
                 placeholder="Email Address"
 
                 className="
+                h-14
                 rounded-2xl
-                border border-white/10
-                bg-white/[0.05]
+                border
+                border-gray-300
+                px-5
+                outline-none
+                "
+              />
 
-                p-5
-                text-white
+              <input
+                placeholder="Phone Number"
 
+                className="
+                h-14
+                rounded-2xl
+                border
+                border-gray-300
+                px-5
                 outline-none
                 "
               />
 
               <textarea
-                rows={8}
+                rows={7}
 
-                placeholder="Your Message..."
+                placeholder="Describe your project idea..."
 
                 className="
                 rounded-2xl
-                border border-white/10
-                bg-white/[0.05]
-
+                border
+                border-gray-300
                 p-5
-                text-white
-
                 outline-none
                 "
               />
 
-              <Button
+              <button
                 className="
+                h-14
                 rounded-2xl
-                bg-gradient-to-r
-                from-blue-600
-                to-purple-600
-
-                py-6
+                bg-black
                 text-lg
-
+                font-semibold
+                text-white
                 transition
-                hover:scale-[1.01]
+                hover:bg-gray-800
                 "
               >
                 Send Message
-              </Button>
+              </button>
 
             </div>
 
           </div>
 
-          <div
-            className="
-            space-y-8
-            "
-          >
+          {/* CONTACT INFO */}
+
+          <div className="space-y-6">
 
             <div
               className="
-              glass
-              rounded-[40px]
+              flex
+              items-center
+              gap-5
+
+              rounded-[28px]
+
+              border
+              border-gray-200
+
+              bg-white
+
               p-8
+
+              shadow-sm
               "
             >
 
               <div
                 className="
-                flex items-center gap-5
+                flex
+                h-16
+                w-16
+                items-center
+                justify-center
+
+                rounded-2xl
+
+                bg-blue-100
                 "
               >
 
-                <div
+                <Mail
                   className="
-                  flex
-                  h-16
-                  w-16
-                  items-center
-                  justify-center
+                  h-7
+                  w-7
+                  text-blue-600
+                  "
+                />
 
-                  rounded-2xl
-                  bg-white/[0.05]
+              </div>
+
+              <div>
+
+                <p
+                  className="
+                  text-sm
+                  text-gray-500
                   "
                 >
+                  Email
+                </p>
 
-                  <Mail
-                    className="
-                    h-8
-                    w-8
-                    text-blue-400
-                    "
-                  />
-
-                </div>
-
-                <div>
-
-                  <p
-                    className="
-                    text-slate-400
-                    "
-                  >
-                    Email
-                  </p>
-
-                  <h3
-                    className="
-                    mt-2
-                    text-xl
-                    font-bold
-                    "
-                  >
-                    contact@projexahub.com
-                  </h3>
-
-                </div>
+                <h3
+                  className="
+                  mt-1
+                  text-xl
+                  font-semibold
+                  "
+                >
+                  support@projexahub.in
+                </h3>
 
               </div>
 
@@ -233,62 +274,67 @@ export default function ContactPage() {
 
             <div
               className="
-              glass
-              rounded-[40px]
+              flex
+              items-center
+              gap-5
+
+              rounded-[28px]
+
+              border
+              border-gray-200
+
+              bg-white
+
               p-8
+
+              shadow-sm
               "
             >
 
               <div
                 className="
-                flex items-center gap-5
+                flex
+                h-16
+                w-16
+                items-center
+                justify-center
+
+                rounded-2xl
+
+                bg-green-100
                 "
               >
 
-                <div
+                <Phone
                   className="
-                  flex
-                  h-16
-                  w-16
-                  items-center
-                  justify-center
+                  h-7
+                  w-7
+                  text-green-600
+                  "
+                />
 
-                  rounded-2xl
-                  bg-white/[0.05]
+              </div>
+
+              <div>
+
+                <p
+                  className="
+                  text-sm
+                  text-gray-500
                   "
                 >
+                  Phone
+                </p>
 
-                  <Phone
-                    className="
-                    h-8
-                    w-8
-                    text-green-400
-                    "
-                  />
-
-                </div>
-
-                <div>
-
-                  <p
-                    className="
-                    text-slate-400
-                    "
-                  >
-                    Phone
-                  </p>
-
-                  <h3
-                    className="
-                    mt-2
-                    text-xl
-                    font-bold
-                    "
-                  >
-                    +91 98765 43210
-                  </h3>
-
-                </div>
+                <h3
+                  className="
+                  mt-1
+                  text-xl
+                  font-semibold
+                  "
+                >
+                  +91 8088046553
+                </h3>
 
               </div>
 
@@ -296,62 +342,67 @@ export default function ContactPage() {
 
             <div
               className="
-              glass
-              rounded-[40px]
+              flex
+              items-center
+              gap-5
+
+              rounded-[28px]
+
+              border
+              border-gray-200
+
+              bg-white
+
               p-8
+
+              shadow-sm
               "
             >
 
               <div
                 className="
-                flex items-center gap-5
+                flex
+                h-16
+                w-16
+                items-center
+                justify-center
+
+                rounded-2xl
+
+                bg-purple-100
                 "
               >
 
-                <div
+                <MapPin
                   className="
-                  flex
-                  h-16
-                  w-16
-                  items-center
-                  justify-center
+                  h-7
+                  w-7
+                  text-purple-600
+                  "
+                />
 
-                  rounded-2xl
-                  bg-white/[0.05]
+              </div>
+
+              <div>
+
+                <p
+                  className="
+                  text-sm
+                  text-gray-500
                   "
                 >
+                  Location
+                </p>
 
-                  <MapPin
-                    className="
-                    h-8
-                    w-8
-                    text-purple-400
-                    "
-                  />
-
-                </div>
-
-                <div>
-
-                  <p
-                    className="
-                    text-slate-400
-                    "
-                  >
-                    Location
-                  </p>
-
-                  <h3
-                    className="
-                    mt-2
-                    text-xl
-                    font-bold
-                    "
-                  >
-                    Bangalore, India
-                  </h3>
-
-                </div>
+                <h3
+                  className="
+                  mt-1
+                  text-xl
+                  font-semibold
+                  "
+                >
+                  Bangalore, India
+                </h3>
 
               </div>
 
@@ -359,62 +410,67 @@ export default function ContactPage() {
 
             <div
               className="
-              glass
-              rounded-[40px]
+              flex
+              items-center
+              gap-5
+
+              rounded-[28px]
+
+              border
+              border-gray-200
+
+              bg-white
+
               p-8
+
+              shadow-sm
               "
             >
 
               <div
                 className="
-                flex items-center gap-5
+                flex
+                h-16
+                w-16
+                items-center
+                justify-center
+
+                rounded-2xl
+
+                bg-green-100
                 "
               >
 
-                <div
+                <MessageCircle
                   className="
-                  flex
-                  h-16
-                  w-16
-                  items-center
-                  justify-center
+                  h-7
+                  w-7
+                  text-green-600
+                  "
+                />
 
-                  rounded-2xl
-                  bg-white/[0.05]
+              </div>
+
+              <div>
+
+                <p
+                  className="
+                  text-sm
+                  text-gray-500
                   "
                 >
+                  WhatsApp
+                </p>
 
-                  <MessageCircle
-                    className="
-                    h-8
-                    w-8
-                    text-green-400
-                    "
-                  />
-
-                </div>
-
-                <div>
-
-                  <p
-                    className="
-                    text-slate-400
-                    "
-                  >
-                    WhatsApp
-                  </p>
-
-                  <h3
-                    className="
-                    mt-2
-                    text-xl
-                    font-bold
-                    "
-                  >
-                    Chat With Us
-                  </h3>
-
-                </div>
+                <h3
+                  className="
+                  mt-1
+                  text-xl
+                  font-semibold
+                  "
+                >
+                  Chat With Us
+                </h3>
 
               </div>
 
@@ -427,5 +483,7 @@ export default function ContactPage() {
       </div>
 
     </main>
+
   )
+
 }

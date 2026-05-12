@@ -1,33 +1,100 @@
 "use client"
 
+import Link from "next/link"
+
 import {
   useEffect,
   useState,
 } from "react"
 
-import Link from "next/link"
+import Image from "next/image"
 
 import {
   collection,
   getDocs,
+  deleteDoc,
+  doc,
 } from "firebase/firestore"
 
-import { db } from "../lib/firebase"
+import {
+  onAuthStateChanged,
+} from "firebase/auth"
+
+import {
+  auth,
+  db,
+} from "@/app/lib/firebase"
 
 export default function ProjectsPage() {
+
+  const ADMIN_EMAIL =
+    "dasaripurushottam58@gmail.com"
+
+  const [isAdmin, setIsAdmin] =
+    useState(false)
 
   const [projects, setProjects] =
     useState<any[]>([])
 
-  const [filteredProjects,
-    setFilteredProjects] =
-    useState<any[]>([])
-
-  const [search, setSearch] =
-    useState("")
-
   const [loading, setLoading] =
     useState(true)
+
+  useEffect(() => {
+
+    const unsubscribe =
+      onAuthStateChanged(
+        auth,
+        (user) => {
+
+          if (
+            user?.email ===
+            ADMIN_EMAIL
+          ) {
+
+            setIsAdmin(true)
+
+          }
+
+        }
+      )
+
+    return () => unsubscribe()
+
+  }, [])
+
+  async function handleDelete(
+    id: string
+  ) {
+
+    const confirmDelete =
+      confirm(
+        "Delete this project?"
+      )
+
+    if (!confirmDelete) return
+
+    try {
+
+      await deleteDoc(
+        doc(db, "projects", id)
+      )
+
+      setProjects(
+        projects.filter(
+          (project) =>
+            project.id !== id
+        )
+      )
+
+    } catch (error) {
+
+      console.log(error)
+
+      alert("Failed to delete")
+
+    }
+
+  }
 
   useEffect(() => {
 
@@ -40,20 +107,13 @@ export default function ProjectsPage() {
             collection(db, "projects")
           )
 
-        const data: any[] = []
-
-        querySnapshot.forEach((doc) => {
-
-          data.push({
+        const projectsData =
+          querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
-          })
+          }))
 
-        })
-
-        setProjects(data)
-
-        setFilteredProjects(data)
+        setProjects(projectsData)
 
       } catch (error) {
 
@@ -71,31 +131,35 @@ export default function ProjectsPage() {
 
   }, [])
 
-  useEffect(() => {
+  if (loading) {
 
-    const filtered =
-      projects.filter((project) =>
+    return (
 
-        project.title
-          .toLowerCase()
-          .includes(search.toLowerCase())
+      <main
+        className="
+        flex
+        min-h-screen
+        items-center
+        justify-center
+        bg-[#f8fafc]
+        text-black
+        "
+      >
+        Loading Projects...
+      </main>
 
-      )
+    )
 
-    setFilteredProjects(filtered)
-
-  }, [search, projects])
+  }
 
   return (
+
     <main
       className="
       min-h-screen
-      bg-[#060816]
-
+      bg-[#f8fafc]
       px-6
       py-32
-
-      text-white
       "
     >
 
@@ -110,203 +174,115 @@ export default function ProjectsPage() {
 
           <h1
             className="
-            text-5xl
+            text-6xl
             font-black
-
-            md:text-7xl
+            text-black
             "
           >
-
-            Explore{" "}
-
-            <span className="gradient-text">
-              Projects
-            </span>
-
+            Explore Projects
           </h1>
 
         </div>
 
-        <div className="mt-12">
+        <div
+          className="
+          mt-20
+          grid
+          gap-10
+          md:grid-cols-2
+          "
+        >
 
-          <input
-            value={search}
+          {projects.map((project) => (
 
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
+            <div
+              key={project.id}
 
-            placeholder="Search Projects..."
+              className="
+              overflow-hidden
+              rounded-3xl
+              border
+              border-gray-200
+              bg-white
+              shadow-sm
+              "
+            >
 
-            className="
-            w-full
+              <div className="relative h-72 w-full">
 
-            rounded-2xl
+                <Image
+                  src={
+                    project.image
+                  }
 
-            border border-white/10
+                  alt={
+                    project.title
+                  }
 
-            bg-white/5
+                  fill
 
-            p-5
+                  className="object-cover"
+                />
 
-            text-white
+              </div>
 
-            outline-none
-            "
-          />
+              <div className="p-8">
 
-        </div>
-
-        {loading ? (
-
-          <div className="mt-20 text-center">
-            Loading Projects...
-          </div>
-
-        ) : (
-
-          <div
-            className="
-            mt-20
-
-            grid gap-8
-
-            md:grid-cols-2
-            lg:grid-cols-3
-            "
-          >
-
-            {filteredProjects.map((project) => (
-
-              <div
-                key={project.id}
-
-                className="
-                glass
-
-                overflow-hidden
-
-                rounded-[32px]
-
-                border border-white/10
-
-                transition-all
-                duration-300
-
-                hover:-translate-y-2
-                hover:shadow-[0_0_40px_rgba(99,102,241,0.35)]
-                "
-              >
-
-                <div className="relative">
-
-                  <img
-                    src={project.image}
-
-                    alt={project.title}
-
-                    className="
-                    h-60
-                    w-full
-
-                    object-cover
-                    "
-                  />
-
-                  <div
-                    className="
-                    absolute
-                    inset-0
-
-                    bg-gradient-to-t
-                    from-[#060816]
-                    via-transparent
-                    to-transparent
-                    "
-                  />
-
-                  <div
-                    className="
-                    absolute
-                    left-6
-                    top-6
-                    "
-                  >
-
-                    <div
-                      className="
-                      inline-flex
-
-                      rounded-full
-
-                      bg-blue-500/20
-
-                      backdrop-blur-md
-
-                      px-4 py-2
-
-                      text-sm
-                      text-blue-300
-                      "
-                    >
-                      {project.category}
-                    </div>
-
-                  </div>
-
+                <div
+                  className="
+                  inline-flex
+                  rounded-full
+                  bg-gray-100
+                  px-4
+                  py-2
+                  text-sm
+                  text-gray-700
+                  "
+                >
+                  {project.category}
                 </div>
 
-                <div className="p-8">
+                <h2
+                  className="
+                  mt-6
+                  text-4xl
+                  font-black
+                  text-black
+                  "
+                >
+                  {project.title}
+                </h2>
 
-                  <h2
+                <p
+                  className="
+                  mt-5
+                  text-gray-600
+                  leading-8
+                  "
+                >
+                  {project.description}
+                </p>
+
+                <div
+                  className="
+                  mt-10
+                  flex
+                  items-center
+                  justify-between
+                  "
+                >
+
+                  <h3
                     className="
                     text-4xl
                     font-black
+                    text-black
                     "
                   >
-                    {project.title}
-                  </h2>
+                    ₹{project.budget}
+                  </h3>
 
-                  <p
-                    className="
-                    mt-4
-
-                    line-clamp-3
-
-                    text-slate-400
-                    "
-                  >
-                    {project.description}
-                  </p>
-
-                  <div
-                    className="
-                    mt-8
-
-                    flex
-                    items-center
-                    justify-between
-                    "
-                  >
-
-                    <div>
-
-                      <p className="text-slate-500">
-                        Budget
-                      </p>
-
-                      <h3
-                        className="
-                        text-3xl
-                        font-black
-
-                        gradient-text
-                        "
-                      >
-                        ₹{project.budget}
-                      </h3>
-
-                    </div>
+                  <div className="flex gap-4">
 
                     <Link
                       href={`/projects/${project.id}`}
@@ -315,24 +291,38 @@ export default function ProjectsPage() {
                       <button
                         className="
                         rounded-2xl
-
-                        bg-gradient-to-r
-                        from-blue-600
-                        to-purple-600
-
-                        px-6 py-4
-
-                        font-bold
-
-                        transition-all
-
-                        hover:scale-105
+                        bg-black
+                        px-6
+                        py-4
+                        text-white
                         "
                       >
-                        View Project
+                        View Details
                       </button>
 
                     </Link>
+
+                    {isAdmin && (
+
+                      <button
+                        onClick={() =>
+                          handleDelete(
+                            project.id
+                          )
+                        }
+
+                        className="
+                        rounded-2xl
+                        bg-red-500
+                        px-6
+                        py-4
+                        text-white
+                        "
+                      >
+                        Delete
+                      </button>
+
+                    )}
 
                   </div>
 
@@ -340,14 +330,16 @@ export default function ProjectsPage() {
 
               </div>
 
-            ))}
+            </div>
 
-          </div>
+          ))}
 
-        )}
+        </div>
 
       </div>
 
     </main>
+
   )
+
 }

@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 
 const cards = [
+
   {
     title: "Projects",
     value: "4",
@@ -31,40 +32,78 @@ const cards = [
     value: "12",
     icon: Bot,
   },
+
 ]
 
 export default function UserDashboardPage() {
+
   return (
-    <main className="
-    min-h-screen
-    bg-[#020617]
-    text-white
-    ">
 
-      <div className="
-      mx-auto
-      max-w-7xl
-      px-6
-      py-32
-      ">
+    <main
+      className="
+      min-h-screen
+      bg-gray-50
+      "
+    >
 
-        <div className="
-        flex items-center justify-between
-        ">
+      <div
+        className="
+        mx-auto
+        max-w-7xl
+        px-6
+        py-32
+        "
+      >
+
+        {/* HEADER */}
+
+        <div
+          className="
+          flex
+          flex-col
+          gap-6
+
+          md:flex-row
+          md:items-center
+          md:justify-between
+          "
+        >
 
           <div>
 
-            <h1 className="
-            text-5xl
-            font-black
-            ">
+            <div
+              className="
+              inline-flex
+              rounded-full
+              bg-blue-100
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-blue-700
+              "
+            >
+              USER DASHBOARD
+            </div>
+
+            <h1
+              className="
+              mt-6
+              text-5xl
+              font-bold
+              text-gray-900
+              "
+            >
               My Dashboard
             </h1>
 
-            <p className="
-            mt-3
-            text-slate-400
-            ">
+            <p
+              className="
+              mt-4
+              text-lg
+              text-gray-600
+              "
+            >
               Manage your engineering projects and services.
             </p>
 
@@ -72,12 +111,18 @@ export default function UserDashboardPage() {
 
         </div>
 
-        <div className="
-        mt-16
-        grid gap-8
-        md:grid-cols-2
-        lg:grid-cols-4
-        ">
+        {/* CARDS */}
+
+        <div
+          className="
+          mt-16
+          grid
+          gap-8
+
+          md:grid-cols-2
+          lg:grid-cols-4
+          "
+        >
 
           {cards.map((card, index) => {
 
@@ -89,45 +134,74 @@ export default function UserDashboardPage() {
                 key={index}
 
                 className="
-                glass
                 rounded-3xl
+                border
+                border-gray-200
+                bg-white
                 p-8
+
+                shadow-sm
+
+                transition-all
+                duration-300
+
+                hover:-translate-y-1
+                hover:shadow-xl
                 "
               >
 
-                <div className="
-                flex items-center justify-between
-                ">
+                <div
+                  className="
+                  flex
+                  items-center
+                  justify-between
+                  "
+                >
 
                   <div>
 
-                    <p className="
-                    text-slate-400
-                    ">
+                    <p
+                      className="
+                      text-gray-500
+                      "
+                    >
                       {card.title}
                     </p>
 
-                    <h2 className="
-                    mt-3
-                    text-4xl
-                    font-black
-                    ">
+                    <h2
+                      className="
+                      mt-4
+                      text-4xl
+                      font-extrabold
+                      text-black
+                      "
+                    >
                       {card.value}
                     </h2>
 
                   </div>
 
-                  <div className="
-                  flex h-14 w-14 items-center justify-center
-                  rounded-2xl
-                  bg-gradient-to-r
-                  from-blue-600
-                  to-purple-600
-                  ">
+                  <div
+                    className="
+                    flex
+                    h-14
+                    w-14
+                    items-center
+                    justify-center
 
-                    <Icon className="
-                    h-7 w-7 text-white
-                    " />
+                    rounded-2xl
+
+                    bg-black
+                    "
+                  >
+
+                    <Icon
+                      className="
+                      h-7
+                      w-7
+                      text-white
+                      "
+                    />
 
                   </div>
 
@@ -136,96 +210,185 @@ export default function UserDashboardPage() {
               </div>
 
             )
+
           })}
 
         </div>
 
-        <div className="
-        glass
-        mt-12
-        rounded-3xl
-        p-8
-        ">
+        {/* ACTIVE PROJECTS */}
 
-          <h2 className="
-          text-3xl
-          font-black
-          ">
-            Active Projects
-          </h2>
+        <div
+          className="
+          mt-14
+          rounded-3xl
+          border
+          border-gray-200
+          bg-white
+          p-8
+          shadow-sm
+          "
+        >
 
-          <div className="
-          mt-8
-          space-y-6
-          ">
+          <div
+            className="
+            flex
+            items-center
+            justify-between
+            "
+          >
 
-            <div className="
-            flex items-center justify-between
-            rounded-2xl
-            bg-white/5
-            p-6
-            ">
+            <h2
+              className="
+              text-3xl
+              font-bold
+              text-black
+              "
+            >
+              Active Projects
+            </h2>
+
+            <button
+              className="
+              rounded-xl
+              border
+              border-gray-300
+              px-5
+              py-2
+              text-sm
+              font-medium
+              text-black
+
+              transition
+              hover:bg-gray-100
+              "
+            >
+              View All
+            </button>
+
+          </div>
+
+          <div
+            className="
+            mt-8
+            space-y-6
+            "
+          >
+
+            {/* PROJECT 1 */}
+
+            <div
+              className="
+              flex
+              flex-col
+              gap-6
+
+              rounded-2xl
+              border
+              border-gray-200
+              bg-gray-50
+              p-6
+
+              md:flex-row
+              md:items-center
+              md:justify-between
+              "
+            >
 
               <div>
 
-                <h3 className="
-                text-xl
-                font-bold
-                ">
+                <h3
+                  className="
+                  text-2xl
+                  font-semibold
+                  text-black
+                  "
+                >
                   Smart Stair Cleaning Robot
                 </h3>
 
-                <p className="
-                mt-2
-                text-slate-400
-                ">
+                <p
+                  className="
+                  mt-2
+                  text-gray-600
+                  "
+                >
                   Robotics Project
                 </p>
 
               </div>
 
-              <span className="
-              rounded-full
-              bg-green-500/20
-              px-4 py-2
-              text-green-400
-              ">
+              <span
+                className="
+                w-fit
+                rounded-full
+                bg-green-100
+                px-4
+                py-2
+                text-sm
+                font-medium
+                text-green-700
+                "
+              >
                 Ongoing
               </span>
 
             </div>
 
-            <div className="
-            flex items-center justify-between
-            rounded-2xl
-            bg-white/5
-            p-6
-            ">
+            {/* PROJECT 2 */}
+
+            <div
+              className="
+              flex
+              flex-col
+              gap-6
+
+              rounded-2xl
+              border
+              border-gray-200
+              bg-gray-50
+              p-6
+
+              md:flex-row
+              md:items-center
+              md:justify-between
+              "
+            >
 
               <div>
 
-                <h3 className="
-                text-xl
-                font-bold
-                ">
+                <h3
+                  className="
+                  text-2xl
+                  font-semibold
+                  text-black
+                  "
+                >
                   AI Attendance System
                 </h3>
 
-                <p className="
-                mt-2
-                text-slate-400
-                ">
+                <p
+                  className="
+                  mt-2
+                  text-gray-600
+                  "
+                >
                   AI/ML Project
                 </p>
 
               </div>
 
-              <span className="
-              rounded-full
-              bg-blue-500/20
-              px-4 py-2
-              text-blue-400
-              ">
+              <span
+                className="
+                w-fit
+                rounded-full
+                bg-blue-100
+                px-4
+                py-2
+                text-sm
+                font-medium
+                text-blue-700
+                "
+              >
                 Completed
               </span>
 
@@ -238,5 +401,6 @@ export default function UserDashboardPage() {
       </div>
 
     </main>
+
   )
 }

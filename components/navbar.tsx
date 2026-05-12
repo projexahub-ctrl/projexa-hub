@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 
+import Image from "next/image"
+
 import {
   useEffect,
   useState,
@@ -10,15 +12,15 @@ import {
 import {
   onAuthStateChanged,
   signOut,
+  User,
 } from "firebase/auth"
 
-import { auth }
-from "../app/lib/firebase"
+import { auth } from "@/app/lib/firebase"
 
 export default function Navbar() {
 
   const [user, setUser] =
-    useState<any>(null)
+    useState<User | null>(null)
 
   useEffect(() => {
 
@@ -51,17 +53,21 @@ export default function Navbar() {
   }
 
   return (
+
     <header
       className="
       fixed
       left-0
       top-0
       z-50
-
       w-full
 
-      px-6
-      py-6
+      border-b
+      border-gray-200
+
+      bg-white/95
+
+      backdrop-blur-md
       "
     >
 
@@ -69,31 +75,43 @@ export default function Navbar() {
         className="
         mx-auto
         flex
+        h-20
         max-w-7xl
-
         items-center
         justify-between
 
-        rounded-[28px]
-
-        border border-white/10
-
-        bg-[#0f172a]/80
-
-        px-8 py-5
-
-        backdrop-blur-xl
+        px-6
         "
       >
 
-        <Link href="/">
+        {/* LOGO */}
+
+        <Link
+          href="/"
+
+          className="
+          flex
+          items-center
+          gap-3
+          "
+        >
+
+          <Image
+            src="/logo.jpg"
+            alt="ProjexaHub Logo"
+            width={55}
+            height={55}
+            className="
+            rounded-xl
+            "
+          />
 
           <h1
             className="
-            text-4xl
-            font-black
-
-            gradient-text
+            text-3xl
+            font-extrabold
+            tracking-tight
+            text-black
             "
           >
             ProjexaHub
@@ -101,42 +119,85 @@ export default function Navbar() {
 
         </Link>
 
+        {/* NAV LINKS */}
+
         <nav
           className="
           hidden
-
           items-center
-          gap-10
+          gap-8
+
+          text-sm
+          font-medium
+          text-gray-700
 
           md:flex
           "
         >
 
-          <Link href="/">
+          <Link
+            href="/"
+            className="
+            transition
+            hover:text-black
+            "
+          >
             Home
           </Link>
 
-          <Link href="/projects">
+          <Link
+            href="/projects"
+            className="
+            transition
+            hover:text-black
+            "
+          >
             Projects
           </Link>
 
-          <Link href="/ai_generator">
+          <Link
+            href="/build-and-earn"
+            className="
+            transition
+            hover:text-black
+            "
+          >
+            Build & Earn
+          </Link>
+
+          <Link
+            href="/ai-generator"
+            className="
+            transition
+            hover:text-black
+            "
+          >
             AI Generator
           </Link>
 
-          <Link href="/pricing">
-            Pricing
-          </Link>
-
-          <Link href="/submit-project">
+          <Link
+            href="/submit-project"
+            className="
+            transition
+            hover:text-black
+            "
+          >
             Submit Project
           </Link>
 
-          <Link href="/contact">
+          <Link
+            href="/contact"
+            className="
+            transition
+            hover:text-black
+            "
+          >
             Contact
           </Link>
 
         </nav>
+
+        {/* AUTH BUTTONS */}
 
         <div
           className="
@@ -154,15 +215,23 @@ export default function Navbar() {
 
                 <button
                   className="
-                  rounded-2xl
+                  rounded-xl
 
-                  border border-white/10
+                  border
+                  border-gray-300
 
-                  bg-white/5
+                  bg-white
 
-                  px-5 py-3
+                  px-5
+                  py-2.5
 
+                  text-sm
                   font-semibold
+                  text-black
+
+                  transition
+
+                  hover:bg-gray-100
                   "
                 >
                   Dashboard
@@ -174,15 +243,20 @@ export default function Navbar() {
                 onClick={handleLogout}
 
                 className="
-                rounded-2xl
+                rounded-xl
 
-                bg-gradient-to-r
-                from-red-500
-                to-pink-500
+                bg-black
 
-                px-5 py-3
+                px-5
+                py-2.5
 
+                text-sm
                 font-semibold
+                text-white
+
+                transition
+
+                hover:bg-gray-800
                 "
               >
                 Logout
@@ -196,15 +270,20 @@ export default function Navbar() {
 
               <button
                 className="
-                rounded-2xl
+                rounded-xl
 
-                bg-gradient-to-r
-                from-blue-600
-                to-purple-600
+                bg-black
 
-                px-5 py-3
+                px-5
+                py-2.5
 
+                text-sm
                 font-semibold
+                text-white
+
+                transition
+
+                hover:bg-gray-800
                 "
               >
                 Login
@@ -219,5 +298,7 @@ export default function Navbar() {
       </div>
 
     </header>
+
   )
+
 }

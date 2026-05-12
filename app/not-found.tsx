@@ -1,7 +1,9 @@
 import Link from "next/link"
 
 export default function NotFound() {
+
   return (
+
     <main
       className="
       flex
@@ -9,48 +11,61 @@ export default function NotFound() {
       items-center
       justify-center
 
-      bg-[#060816]
+      bg-gray-50
       px-6
-      text-white
       "
     >
 
       <div
         className="
+        max-w-2xl
         text-center
         "
       >
 
+        {/* 404 */}
+
         <h1
           className="
-          text-8xl
-          font-black
-
-          gradient-text
+          text-9xl
+          font-extrabold
+          tracking-tight
+          text-black
           "
         >
           404
         </h1>
 
+        {/* TITLE */}
+
         <h2
           className="
           mt-6
-          text-4xl
-          font-black
+          text-5xl
+          font-bold
+          text-gray-900
           "
         >
           Page Not Found
         </h2>
 
+        {/* DESCRIPTION */}
+
         <p
           className="
+          mx-auto
           mt-6
+          max-w-xl
           text-lg
-          text-slate-400
+          leading-8
+          text-gray-600
           "
         >
-          The page you are looking for does not exist.
+          The page you are looking for may have been removed,
+          renamed or is temporarily unavailable.
         </p>
+
+        {/* BUTTON */}
 
         <Link
           href="/"
@@ -58,17 +73,22 @@ export default function NotFound() {
           className="
           mt-10
           inline-flex
+          items-center
+          justify-center
 
-          rounded-2xl
+          rounded-xl
 
-          bg-gradient-to-r
-          from-blue-600
-          to-purple-600
+          bg-black
 
           px-8
           py-4
 
+          text-lg
           font-semibold
+          text-white
+
+          transition
+          hover:bg-gray-800
           "
         >
           Back To Home
@@ -77,5 +97,6 @@ export default function NotFound() {
       </div>
 
     </main>
+
   )
 }

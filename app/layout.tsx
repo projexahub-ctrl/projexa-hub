@@ -5,9 +5,12 @@ import "./globals.css"
 import Navbar from "@/components/navbar"
 
 export const metadata: Metadata = {
-  title: "ProjexaHub",
+
+  title: "ProjexaHub | Engineering Project Marketplace",
+
   description:
-    "Premium Engineering Project Marketplace",
+    "ProjexaHub is a professional engineering project platform for AI, IoT, Robotics, Mechanical and Software solutions.",
+
 }
 
 export default function RootLayout({
@@ -17,16 +20,26 @@ export default function RootLayout({
 }>) {
 
   return (
+
     <html lang="en">
 
-      <body>
+      <body
+        className="
+        bg-white
+        text-black
+        antialiased
+        "
+      >
 
         <Navbar />
 
-        {children}
+        <main>
+          {children}
+        </main>
 
       </body>
 
     </html>
+
   )
 }

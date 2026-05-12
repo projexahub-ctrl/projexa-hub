@@ -8,14 +8,15 @@ import {
 } from "lucide-react"
 
 export default function ProfilePage() {
+
   return (
+
     <main
       className="
       min-h-screen
-      bg-[#060816]
+      bg-gray-50
       px-6
       py-32
-      text-white
       "
     >
 
@@ -26,11 +27,16 @@ export default function ProfilePage() {
         "
       >
 
+        {/* PROFILE CARD */}
+
         <div
           className="
-          glass
-          rounded-[40px]
+          rounded-3xl
+          border
+          border-gray-200
+          bg-white
           p-10
+          shadow-sm
           "
         >
 
@@ -45,6 +51,8 @@ export default function ProfilePage() {
             "
           >
 
+            {/* AVATAR */}
+
             <div
               className="
               flex
@@ -55,18 +63,19 @@ export default function ProfilePage() {
 
               rounded-full
 
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
+              bg-black
 
               text-5xl
-              font-black
+              font-bold
+              text-white
               "
             >
               P
             </div>
 
             <div className="flex-1">
+
+              {/* TOP */}
 
               <div
                 className="
@@ -93,7 +102,8 @@ export default function ProfilePage() {
                     <h1
                       className="
                       text-5xl
-                      font-black
+                      font-bold
+                      text-gray-900
                       "
                     >
                       Purushotham
@@ -103,7 +113,7 @@ export default function ProfilePage() {
                       className="
                       h-8
                       w-8
-                      text-blue-400
+                      text-blue-600
                       "
                     />
 
@@ -113,7 +123,7 @@ export default function ProfilePage() {
                     className="
                     mt-3
                     text-lg
-                    text-slate-400
+                    text-gray-600
                     "
                   >
                     Founder of ProjexaHub • Engineering Innovator
@@ -123,14 +133,18 @@ export default function ProfilePage() {
 
                 <button
                   className="
-                  rounded-2xl
-                  bg-gradient-to-r
-                  from-blue-600
-                  to-purple-600
+                  rounded-xl
+
+                  bg-black
 
                   px-6
                   py-4
+
                   font-semibold
+                  text-white
+
+                  transition
+                  hover:bg-gray-800
                   "
                 >
                   Edit Profile
@@ -138,26 +152,37 @@ export default function ProfilePage() {
 
               </div>
 
+              {/* STATS */}
+
               <div
                 className="
                 mt-10
-                grid gap-6
+                grid
+                gap-6
 
                 md:grid-cols-3
                 "
               >
 
+                {/* PROJECTS */}
+
                 <div
                   className="
-                  rounded-3xl
-                  bg-white/[0.04]
+                  rounded-2xl
+                  border
+                  border-gray-200
+
+                  bg-gray-50
+
                   p-6
                   "
                 >
 
                   <div
                     className="
-                    flex items-center gap-4
+                    flex
+                    items-center
+                    gap-4
                     "
                   >
 
@@ -165,7 +190,7 @@ export default function ProfilePage() {
                       className="
                       h-8
                       w-8
-                      text-purple-400
+                      text-black
                       "
                     />
 
@@ -173,7 +198,7 @@ export default function ProfilePage() {
 
                       <p
                         className="
-                        text-slate-400
+                        text-gray-500
                         "
                       >
                         Projects
@@ -183,7 +208,8 @@ export default function ProfilePage() {
                         className="
                         mt-1
                         text-3xl
-                        font-black
+                        font-bold
+                        text-black
                         "
                       >
                         24
@@ -195,17 +221,25 @@ export default function ProfilePage() {
 
                 </div>
 
+                {/* RATING */}
+
                 <div
                   className="
-                  rounded-3xl
-                  bg-white/[0.04]
+                  rounded-2xl
+                  border
+                  border-gray-200
+
+                  bg-gray-50
+
                   p-6
                   "
                 >
 
                   <div
                     className="
-                    flex items-center gap-4
+                    flex
+                    items-center
+                    gap-4
                     "
                   >
 
@@ -213,7 +247,7 @@ export default function ProfilePage() {
                       className="
                       h-8
                       w-8
-                      text-yellow-400
+                      text-black
                       "
                     />
 
@@ -221,7 +255,7 @@ export default function ProfilePage() {
 
                       <p
                         className="
-                        text-slate-400
+                        text-gray-500
                         "
                       >
                         Rating
@@ -231,7 +265,8 @@ export default function ProfilePage() {
                         className="
                         mt-1
                         text-3xl
-                        font-black
+                        font-bold
+                        text-black
                         "
                       >
                         4.9
@@ -243,17 +278,25 @@ export default function ProfilePage() {
 
                 </div>
 
+                {/* EXPERIENCE */}
+
                 <div
                   className="
-                  rounded-3xl
-                  bg-white/[0.04]
+                  rounded-2xl
+                  border
+                  border-gray-200
+
+                  bg-gray-50
+
                   p-6
                   "
                 >
 
                   <div
                     className="
-                    flex items-center gap-4
+                    flex
+                    items-center
+                    gap-4
                     "
                   >
 
@@ -261,7 +304,7 @@ export default function ProfilePage() {
                       className="
                       h-8
                       w-8
-                      text-green-400
+                      text-black
                       "
                     />
 
@@ -269,7 +312,7 @@ export default function ProfilePage() {
 
                       <p
                         className="
-                        text-slate-400
+                        text-gray-500
                         "
                       >
                         Experience
@@ -279,7 +322,8 @@ export default function ProfilePage() {
                         className="
                         mt-1
                         text-3xl
-                        font-black
+                        font-bold
+                        text-black
                         "
                       >
                         3Y+
@@ -299,27 +343,39 @@ export default function ProfilePage() {
 
         </div>
 
+        {/* ABOUT + SKILLS */}
+
         <div
           className="
           mt-10
-          grid gap-8
+          grid
+          gap-8
 
           lg:grid-cols-2
           "
         >
 
+          {/* ABOUT */}
+
           <div
             className="
-            glass
-            rounded-[40px]
+            rounded-3xl
+            border
+            border-gray-200
+
+            bg-white
+
             p-8
+
+            shadow-sm
             "
           >
 
             <h2
               className="
               text-3xl
-              font-black
+              font-bold
+              text-black
               "
             >
               About
@@ -328,27 +384,39 @@ export default function ProfilePage() {
             <p
               className="
               mt-6
-              leading-relaxed
-              text-slate-400
+              leading-8
+              text-gray-600
               "
             >
-              Passionate engineering innovator building affordable and advanced engineering project solutions through ProjexaHub.
+              Passionate engineering innovator building affordable
+              and advanced engineering project solutions through
+              ProjexaHub with expertise in AI, Robotics, IoT and
+              Software Development.
             </p>
 
           </div>
 
+          {/* SKILLS */}
+
           <div
             className="
-            glass
-            rounded-[40px]
+            rounded-3xl
+            border
+            border-gray-200
+
+            bg-white
+
             p-8
+
+            shadow-sm
             "
           >
 
             <h2
               className="
               text-3xl
-              font-black
+              font-bold
+              text-black
               "
             >
               Skills
@@ -357,7 +425,9 @@ export default function ProfilePage() {
             <div
               className="
               mt-6
-              flex flex-wrap gap-4
+              flex
+              flex-wrap
+              gap-4
               "
             >
 
@@ -375,14 +445,17 @@ export default function ProfilePage() {
 
                   className="
                   rounded-full
-                  border border-white/10
+                  border
+                  border-gray-300
 
-                  bg-white/[0.05]
+                  bg-gray-100
 
                   px-4
                   py-2
 
-                  text-slate-300
+                  text-sm
+                  font-medium
+                  text-gray-700
                   "
                 >
                   {skill}
@@ -399,5 +472,6 @@ export default function ProfilePage() {
       </div>
 
     </main>
+
   )
 }

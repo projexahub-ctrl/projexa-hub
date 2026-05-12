@@ -3,14 +3,15 @@
 import { Button } from "@/components/ui/button"
 
 export default function SettingsPage() {
+
   return (
+
     <main
       className="
       min-h-screen
-      bg-[#060816]
+      bg-gray-50
       px-6
       py-32
-      text-white
       "
     >
 
@@ -21,45 +22,67 @@ export default function SettingsPage() {
         "
       >
 
+        {/* HEADER */}
+
         <div>
+
+          <div
+            className="
+            inline-flex
+            rounded-full
+            bg-blue-100
+            px-4
+            py-2
+            text-sm
+            font-medium
+            text-blue-700
+            "
+          >
+            ACCOUNT SETTINGS
+          </div>
 
           <h1
             className="
+            mt-6
             text-5xl
-            font-black
+            font-bold
+            text-gray-900
 
             md:text-6xl
             "
           >
-
-            Account{" "}
-
-            <span className="gradient-text">
-              Settings
-            </span>
-
+            Manage Your Account
           </h1>
 
           <p
             className="
             mt-6
             text-lg
-            text-slate-400
+            leading-8
+            text-gray-600
             "
           >
-            Manage your ProjexaHub account preferences.
+            Update your ProjexaHub profile, preferences
+            and account information.
           </p>
 
         </div>
 
+        {/* SETTINGS CARD */}
+
         <div
           className="
-          glass
           mt-16
-          rounded-[40px]
+          rounded-3xl
+          border
+          border-gray-200
+          bg-white
           p-10
+          shadow-sm
           "
         >
+
+          {/* PROFILE */}
 
           <div
             className="
@@ -82,12 +105,11 @@ export default function SettingsPage() {
 
               rounded-full
 
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
+              bg-black
 
               text-4xl
-              font-black
+              font-bold
+              text-white
               "
             >
               P
@@ -98,7 +120,8 @@ export default function SettingsPage() {
               <h2
                 className="
                 text-3xl
-                font-black
+                font-bold
+                text-black
                 "
               >
                 Purushotham
@@ -107,7 +130,7 @@ export default function SettingsPage() {
               <p
                 className="
                 mt-2
-                text-slate-400
+                text-gray-500
                 "
               >
                 purushotham@projexahub.com
@@ -117,10 +140,13 @@ export default function SettingsPage() {
 
           </div>
 
+          {/* FORM */}
+
           <div
             className="
             mt-12
-            grid gap-6
+            grid
+            gap-6
             "
           >
 
@@ -128,14 +154,16 @@ export default function SettingsPage() {
               placeholder="Full Name"
 
               className="
-              rounded-2xl
-              border border-white/10
-              bg-white/[0.05]
+              rounded-xl
+              border
+              border-gray-300
+              bg-white
 
-              p-5
-              text-white
+              p-4
+              text-black
 
               outline-none
+              focus:border-black
               "
             />
 
@@ -145,14 +173,16 @@ export default function SettingsPage() {
               placeholder="Email Address"
 
               className="
-              rounded-2xl
-              border border-white/10
-              bg-white/[0.05]
+              rounded-xl
+              border
+              border-gray-300
+              bg-white
 
-              p-5
-              text-white
+              p-4
+              text-black
 
               outline-none
+              focus:border-black
               "
             />
 
@@ -160,14 +190,16 @@ export default function SettingsPage() {
               placeholder="Phone Number"
 
               className="
-              rounded-2xl
-              border border-white/10
-              bg-white/[0.05]
+              rounded-xl
+              border
+              border-gray-300
+              bg-white
 
-              p-5
-              text-white
+              p-4
+              text-black
 
               outline-none
+              focus:border-black
               "
             />
 
@@ -177,16 +209,20 @@ export default function SettingsPage() {
               placeholder="New Password"
 
               className="
-              rounded-2xl
-              border border-white/10
-              bg-white/[0.05]
+              rounded-xl
+              border
+              border-gray-300
+              bg-white
 
-              p-5
-              text-white
+              p-4
+              text-black
 
               outline-none
+              focus:border-black
               "
             />
+
+            {/* NOTIFICATION */}
 
             <div
               className="
@@ -195,9 +231,10 @@ export default function SettingsPage() {
               justify-between
 
               rounded-2xl
-              border border-white/10
+              border
+              border-gray-200
 
-              bg-white/[0.03]
+              bg-gray-50
 
               p-5
               "
@@ -209,6 +246,7 @@ export default function SettingsPage() {
                   className="
                   text-lg
                   font-semibold
+                  text-black
                   "
                 >
                   Email Notifications
@@ -218,7 +256,7 @@ export default function SettingsPage() {
                   className="
                   mt-1
                   text-sm
-                  text-slate-400
+                  text-gray-500
                   "
                 >
                   Receive updates about projects and services.
@@ -233,26 +271,25 @@ export default function SettingsPage() {
 
                 rounded-full
 
-                bg-gradient-to-r
-                from-blue-600
-                to-purple-600
+                bg-black
                 "
               />
 
             </div>
 
+            {/* BUTTON */}
+
             <Button
               className="
-              rounded-2xl
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
+              rounded-xl
+
+              bg-black
 
               py-6
               text-lg
+              text-white
 
-              transition
-              hover:scale-[1.01]
+              hover:bg-gray-800
               "
             >
               Save Changes
@@ -265,5 +302,6 @@ export default function SettingsPage() {
       </div>
 
     </main>
+
   )
 }

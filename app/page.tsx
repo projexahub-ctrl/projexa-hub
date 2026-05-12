@@ -1,3 +1,4 @@
+
 import HeroSection from "@/components/hero-section"
 import ServicesSection from "@/components/services-section"
 import FeaturedProjects from "@/components/featured-projects"
@@ -8,17 +9,10 @@ import Footer from "@/components/footer"
 import WhatsAppFloat from "@/components/whatsapp-float"
 import Reveal from "@/components/reveal"
 import ScrollTop from "@/components/scroll-top"
-import AIChatbot from "@/components/ai-chatbot"
 
 export default function HomePage() {
   return (
-    <main
-      className="
-      bg-[#060816]
-      text-white
-      overflow-hidden
-      "
-    >
+    <main className="bg-white text-gray-900 overflow-hidden">
 
       <HeroSection />
 
@@ -47,8 +41,6 @@ export default function HomePage() {
       <WhatsAppFloat />
 
       <ScrollTop />
-
-      <AIChatbot />
 
     </main>
   )

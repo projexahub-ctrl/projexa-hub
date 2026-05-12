@@ -3,20 +3,22 @@ import Link from "next/link"
 import {
   Camera,
   LinkIcon,
-  Gift,
   Mail,
+  Phone,
 } from "lucide-react"
 
 export default function Footer() {
+
   return (
+
     <footer
       className="
       border-t
-      border-white/10
-      bg-[#020617]
+      border-gray-200
+      bg-white
       px-6
       py-20
-      text-white
+      text-black
       "
     >
 
@@ -29,18 +31,23 @@ export default function Footer() {
 
         <div
           className="
-          grid gap-12
+          grid
+          gap-12
+
           md:grid-cols-4
           "
         >
+
+          {/* BRAND */}
 
           <div>
 
             <h2
               className="
-              gradient-text
               text-4xl
-              font-black
+              font-extrabold
+              tracking-tight
+              text-black
               "
             >
               ProjexaHub
@@ -49,15 +56,19 @@ export default function Footer() {
             <p
               className="
               mt-6
-              leading-relaxed
-              text-slate-400
+              leading-8
+              text-gray-600
               "
             >
-              Transforming engineering ideas into real-world
-              innovations with premium project solutions.
+              Transforming engineering ideas into
+              real-world innovations with premium
+              final year project solutions and
+              technical support.
             </p>
 
           </div>
+
+          {/* QUICK LINKS */}
 
           <div>
 
@@ -65,6 +76,7 @@ export default function Footer() {
               className="
               text-xl
               font-bold
+              text-black
               "
             >
               Quick Links
@@ -73,34 +85,50 @@ export default function Footer() {
             <div
               className="
               mt-6
-              flex flex-col gap-4
+              flex
+              flex-col
+              gap-4
               "
             >
 
               <Link
+                href="/"
+                className="
+                text-gray-600
+                transition
+                hover:text-black
+                "
+              >
+                Home
+              </Link>
+
+              <Link
                 href="/projects"
-                className="text-slate-400 transition hover:text-white"
+                className="
+                text-gray-600
+                transition
+                hover:text-black
+                "
               >
                 Projects
               </Link>
 
               <Link
-                href="/pricing"
-                className="text-slate-400 transition hover:text-white"
+                href="/contact"
+                className="
+                text-gray-600
+                transition
+                hover:text-black
+                "
               >
-                Pricing
-              </Link>
-
-              <Link
-                href="/submit-project"
-                className="text-slate-400 transition hover:text-white"
-              >
-                Submit Project
+                Contact
               </Link>
 
             </div>
 
           </div>
+
+          {/* SERVICES */}
 
           <div>
 
@@ -108,6 +136,7 @@ export default function Footer() {
               className="
               text-xl
               font-bold
+              text-black
               "
             >
               Services
@@ -116,8 +145,10 @@ export default function Footer() {
             <div
               className="
               mt-6
-              flex flex-col gap-4
-              text-slate-400
+              flex
+              flex-col
+              gap-4
+              text-gray-600
               "
             >
 
@@ -127,11 +158,15 @@ export default function Footer() {
 
               <p>Mechanical Projects</p>
 
-              <p>Robotics</p>
+              <p>Robotics Systems</p>
+
+              <p>Research Assistance</p>
 
             </div>
 
           </div>
+
+          {/* CONTACT */}
 
           <div>
 
@@ -139,65 +174,109 @@ export default function Footer() {
               className="
               text-xl
               font-bold
+              text-black
               "
             >
-              Connect
+              Contact
             </h3>
 
-            <div
-              className="
-              mt-6
-              flex gap-4
-              "
-            >
+            <div className="mt-6 space-y-5">
 
-              <a
-                href="#"
+              <div
                 className="
-                flex h-12 w-12 items-center justify-center
-                rounded-2xl
-                bg-white/5
-                transition hover:bg-white/10
+                flex
+                items-center
+                gap-3
+                text-gray-600
                 "
               >
-                <Camera className="h-5 w-5" />
-              </a>
 
-              <a
-                href="#"
-                className="
-                flex h-12 w-12 items-center justify-center
-                rounded-2xl
-                bg-white/5
-                transition hover:bg-white/10
-                "
-              >
-                <LinkIcon className="h-5 w-5" />
-              </a>
-
-              <a
-                href="#"
-                className="
-                flex h-12 w-12 items-center justify-center
-                rounded-2xl
-                bg-white/5
-                transition hover:bg-white/10
-                "
-              >
-                <Gift className="h-5 w-5" />
-              </a>
-
-              <a
-                href="#"
-                className="
-                flex h-12 w-12 items-center justify-center
-                rounded-2xl
-                bg-white/5
-                transition hover:bg-white/10
-                "
-              >
                 <Mail className="h-5 w-5" />
-              </a>
+
+                <p>
+                  support@projexahub.in
+                </p>
+
+              </div>
+
+              <div
+                className="
+                flex
+                items-center
+                gap-3
+                text-gray-600
+                "
+              >
+
+                <Phone className="h-5 w-5" />
+
+                <p>
+                  +91 9999999999
+                </p>
+
+              </div>
+
+              {/* SOCIALS */}
+
+              <div
+                className="
+                mt-6
+                flex
+                gap-4
+                "
+              >
+
+                <a
+                  href="#"
+
+                  className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+
+                  rounded-xl
+
+                  border
+                  border-gray-200
+
+                  transition
+
+                  hover:bg-gray-100
+                  "
+                >
+
+                  <Camera className="h-5 w-5" />
+
+                </a>
+
+                <a
+                  href="#"
+
+                  className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+
+                  rounded-xl
+
+                  border
+                  border-gray-200
+
+                  transition
+
+                  hover:bg-gray-100
+                  "
+                >
+
+                  <LinkIcon className="h-5 w-5" />
+
+                </a>
+
+              </div>
 
             </div>
 
@@ -205,13 +284,16 @@ export default function Footer() {
 
         </div>
 
+        {/* COPYRIGHT */}
+
         <div
           className="
           mt-16
-          border-t border-white/10
+          border-t
+          border-gray-200
           pt-8
           text-center
-          text-slate-500
+          text-gray-500
           "
         >
 
@@ -222,5 +304,6 @@ export default function Footer() {
       </div>
 
     </footer>
+
   )
 }

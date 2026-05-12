@@ -1,20 +1,69 @@
 "use client"
 
-import { Bot } from "lucide-react"
+import { MessageCircle } from "lucide-react"
 
 export default function AIChatbot() {
+
+  function openWhatsApp() {
+
+    window.open(
+      "https://wa.me/919999999999",
+      "_blank"
+    )
+
+  }
+
   return (
+
     <button
+      onClick={openWhatsApp}
+
       className="
-      fixed bottom-44 right-6 z-50
-      flex h-16 w-16 items-center justify-center
+      fixed
+      bottom-6
+      right-6
+      z-50
+
+      flex
+      items-center
+      gap-3
+
       rounded-full
-      bg-gradient-to-r from-blue-600 to-purple-600
-      shadow-2xl
-      transition hover:scale-110
+
+      bg-black
+
+      px-5
+      py-4
+
+      text-white
+
+      shadow-lg
+
+      transition-all
+      duration-300
+
+      hover:bg-gray-800
+      hover:scale-105
       "
     >
-      <Bot className="h-8 w-8 text-white" />
+
+      <MessageCircle
+        className="
+        h-5
+        w-5
+        "
+      />
+
+      <span
+        className="
+        text-sm
+        font-medium
+        "
+      >
+        Chat With Us
+      </span>
+
     </button>
+
   )
 }

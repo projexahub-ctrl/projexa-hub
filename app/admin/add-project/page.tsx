@@ -5,32 +5,33 @@ import {
   useState,
 } from "react"
 
-import { useRouter }
-from "next/navigation"
+import {
+  addDoc,
+  collection,
+} from "firebase/firestore"
 
 import {
   onAuthStateChanged,
 } from "firebase/auth"
 
 import {
-  addDoc,
-  collection,
-  serverTimestamp,
-} from "firebase/firestore"
+  useRouter,
+} from "next/navigation"
 
 import {
   auth,
   db,
-} from "./../lib/firebase"
+} from "@/app/lib/firebase"
 
-export default function AdminUploadPage() {
+export default function AddProjectPage() {
 
-  const router = useRouter()
+  const router =
+    useRouter()
 
-  const [loading, setLoading] =
-    useState(true)
+  const ADMIN_EMAIL =
+    "dasaripurushottam58@gmail.com"
 
-  const [uploading, setUploading] =
+  const [authorized, setAuthorized] =
     useState(false)
 
   const [title, setTitle] =
@@ -45,9 +46,11 @@ export default function AdminUploadPage() {
   const [image, setImage] =
     useState("")
 
-  const [description,
-    setDescription] =
+  const [description, setDescription] =
     useState("")
+
+  const [loading, setLoading] =
+    useState(false)
 
   useEffect(() => {
 
@@ -56,22 +59,28 @@ export default function AdminUploadPage() {
         auth,
         (user) => {
 
-          if (!user) {
+          if (
+            user &&
+            user.email ===
+              ADMIN_EMAIL
+          ) {
 
-            router.push("/auth")
+            setAuthorized(true)
+
+          } else {
+
+            router.push("/")
 
           }
-
-          setLoading(false)
 
         }
       )
 
     return () => unsubscribe()
 
-  }, [router])
+  }, [])
 
-  async function uploadProject() {
+  async function handleAddProject() {
 
     if (
       !title ||
@@ -89,7 +98,7 @@ export default function AdminUploadPage() {
 
     try {
 
-      setUploading(true)
+      setLoading(true)
 
       await addDoc(
         collection(db, "projects"),
@@ -99,12 +108,13 @@ export default function AdminUploadPage() {
           budget,
           image,
           description,
-          createdAt:
-            serverTimestamp(),
+          createdAt: Date.now(),
         }
       )
 
-      alert("Project Uploaded 🚀")
+      alert(
+        "Project Added Successfully"
+      )
 
       setTitle("")
       setCategory("")
@@ -112,60 +122,41 @@ export default function AdminUploadPage() {
       setImage("")
       setDescription("")
 
-      router.push("/projects")
-
     } catch (error) {
 
       console.log(error)
 
-      alert("Upload Failed")
+      alert("Failed To Add Project")
 
     } finally {
 
-      setUploading(false)
+      setLoading(false)
 
     }
 
   }
 
-  if (loading) {
+  if (!authorized) {
 
-    return (
-      <main
-        className="
-        min-h-screen
-        bg-[#060816]
-
-        flex
-        items-center
-        justify-center
-
-        text-white
-        "
-      >
-        Checking Access...
-      </main>
-    )
+    return null
 
   }
 
   return (
+
     <main
       className="
       min-h-screen
-      bg-[#060816]
-
+      bg-[#f8fafc]
       px-6
       py-32
-
-      text-white
       "
     >
 
       <div
         className="
         mx-auto
-        max-w-4xl
+        max-w-5xl
         "
       >
 
@@ -175,200 +166,159 @@ export default function AdminUploadPage() {
             className="
             text-5xl
             font-black
-
-            md:text-7xl
+            text-black
             "
           >
-
-            Upload{" "}
-
-            <span className="gradient-text">
-              Project
-            </span>
-
+            Add Project
           </h1>
 
           <p
             className="
-            mt-6
-
-            text-lg
-            text-slate-400
+            mt-4
+            text-gray-500
             "
           >
-            Add engineering projects
-            to ProjexaHub
+            Admin Upload Panel
           </p>
 
         </div>
 
         <div
           className="
-          glass
-
           mt-16
-
           rounded-[40px]
-
+          border
+          border-gray-200
+          bg-white
           p-10
+          shadow-sm
           "
         >
 
-          <div
-            className="
-            grid gap-6
-            "
-          >
+          <div className="space-y-6">
 
             <input
               value={title}
-
               onChange={(e) =>
-                setTitle(e.target.value)
+                setTitle(
+                  e.target.value
+                )
               }
 
               placeholder="Project Title"
 
               className="
+              w-full
               rounded-2xl
-
-              border border-white/10
-
-              bg-white/5
-
+              border
+              border-gray-300
               p-5
-
-              text-white
-
               outline-none
               "
             />
 
             <input
               value={category}
-
               onChange={(e) =>
-                setCategory(e.target.value)
+                setCategory(
+                  e.target.value
+                )
               }
 
               placeholder="Category"
 
               className="
+              w-full
               rounded-2xl
-
-              border border-white/10
-
-              bg-white/5
-
+              border
+              border-gray-300
               p-5
-
-              text-white
-
               outline-none
               "
             />
 
             <input
               value={budget}
-
               onChange={(e) =>
-                setBudget(e.target.value)
+                setBudget(
+                  e.target.value
+                )
               }
 
               placeholder="Budget"
 
               className="
+              w-full
               rounded-2xl
-
-              border border-white/10
-
-              bg-white/5
-
+              border
+              border-gray-300
               p-5
-
-              text-white
-
               outline-none
               "
             />
 
             <input
               value={image}
-
               onChange={(e) =>
-                setImage(e.target.value)
+                setImage(
+                  e.target.value
+                )
               }
 
-              placeholder="Image URL"
+              placeholder="Cloudinary Image URL"
 
               className="
+              w-full
               rounded-2xl
-
-              border border-white/10
-
-              bg-white/5
-
+              border
+              border-gray-300
               p-5
-
-              text-white
-
               outline-none
               "
             />
 
             <textarea
-              rows={8}
-
               value={description}
-
               onChange={(e) =>
                 setDescription(
                   e.target.value
                 )
               }
 
+              rows={6}
+
               placeholder="Project Description"
 
               className="
+              w-full
               rounded-2xl
-
-              border border-white/10
-
-              bg-white/5
-
+              border
+              border-gray-300
               p-5
-
-              text-white
-
               outline-none
               "
             />
 
             <button
-              onClick={uploadProject}
+              onClick={
+                handleAddProject
+              }
+
+              disabled={loading}
 
               className="
+              w-full
               rounded-2xl
-
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
-
-              py-6
-
+              bg-black
+              py-5
               text-lg
-              font-bold
-
-              transition-all
-
-              hover:scale-[1.02]
+              font-semibold
+              text-white
               "
             >
-
-              {uploading
-                ? "Uploading..."
-                : "Upload Project"}
-
+              {loading
+                ? "Adding..."
+                : "Add Project"}
             </button>
 
           </div>
@@ -379,4 +329,5 @@ export default function AdminUploadPage() {
 
     </main>
   )
+
 }

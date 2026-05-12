@@ -27,17 +27,23 @@ export default function AuthPage() {
 
   const router = useRouter()
 
-  const [isLogin, setIsLogin] = useState(true)
+  const [isLogin, setIsLogin] =
+    useState(true)
 
-  const [email, setEmail] = useState("")
+  const [email, setEmail] =
+    useState("")
 
-  const [password, setPassword] = useState("")
+  const [password, setPassword] =
+    useState("")
 
-  const [name, setName] = useState("")
+  const [name, setName] =
+    useState("")
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] =
+    useState(false)
 
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] =
+    useState<any>(null)
 
   useEffect(() => {
 
@@ -122,41 +128,75 @@ export default function AuthPage() {
   }
 
   return (
+
     <main
       className="
-      min-h-screen
-      bg-[#060816]
-
       flex
+      min-h-screen
       items-center
       justify-center
 
+      bg-gray-50
+
       px-6
+      py-20
       "
     >
 
       <div
         className="
-        glass
         w-full
         max-w-md
 
-        rounded-[40px]
+        rounded-3xl
+
+        border
+        border-gray-200
+
+        bg-white
+
         p-10
+
+        shadow-sm
         "
       >
 
+        {/* HEADER */}
+
         <div className="text-center">
+
+          <div
+            className="
+            mx-auto
+            flex
+            h-20
+            w-20
+            items-center
+            justify-center
+
+            rounded-2xl
+
+            bg-black
+
+            text-3xl
+            font-bold
+            text-white
+            "
+          >
+            P
+          </div>
 
           <h1
             className="
-            text-5xl
-            font-black
+            mt-6
+            text-4xl
+            font-bold
+            text-gray-900
             "
           >
 
             {user
-              ? "Welcome 🚀"
+              ? "Welcome Back"
               : isLogin
               ? "Login"
               : "Create Account"}
@@ -166,7 +206,7 @@ export default function AuthPage() {
           <p
             className="
             mt-4
-            text-slate-400
+            text-gray-500
             "
           >
 
@@ -183,7 +223,7 @@ export default function AuthPage() {
           <div
             className="
             mt-10
-            space-y-6
+            space-y-5
             "
           >
 
@@ -203,15 +243,18 @@ export default function AuthPage() {
                 className="
                 w-full
 
-                rounded-2xl
-                border border-white/10
+                rounded-xl
+                border
+                border-gray-300
 
-                bg-white/[0.05]
+                bg-white
 
-                p-5
-                text-white
+                p-4
+
+                text-black
 
                 outline-none
+                focus:border-black
                 "
               />
 
@@ -231,15 +274,18 @@ export default function AuthPage() {
               className="
               w-full
 
-              rounded-2xl
-              border border-white/10
+              rounded-xl
+              border
+              border-gray-300
 
-              bg-white/[0.05]
+              bg-white
 
-              p-5
-              text-white
+              p-4
+
+              text-black
 
               outline-none
+              focus:border-black
               "
             />
 
@@ -257,15 +303,18 @@ export default function AuthPage() {
               className="
               w-full
 
-              rounded-2xl
-              border border-white/10
+              rounded-xl
+              border
+              border-gray-300
 
-              bg-white/[0.05]
+              bg-white
 
-              p-5
-              text-white
+              p-4
+
+              text-black
 
               outline-none
+              focus:border-black
               "
             />
 
@@ -275,14 +324,15 @@ export default function AuthPage() {
               className="
               w-full
 
-              rounded-2xl
+              rounded-xl
 
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
+              bg-black
 
               py-6
               text-lg
+              text-white
+
+              hover:bg-gray-800
               "
             >
 
@@ -301,8 +351,15 @@ export default function AuthPage() {
 
               className="
               w-full
-              text-blue-400
-              hover:text-blue-300
+
+              text-sm
+              font-medium
+
+              text-gray-600
+
+              transition
+
+              hover:text-black
               "
             >
 
@@ -324,13 +381,15 @@ export default function AuthPage() {
               className="
               w-full
 
-              rounded-2xl
+              rounded-xl
 
               bg-red-500
-              hover:bg-red-600
 
               py-6
               text-lg
+              text-white
+
+              hover:bg-red-600
               "
             >
               Logout
@@ -343,5 +402,6 @@ export default function AuthPage() {
       </div>
 
     </main>
+
   )
 }

@@ -6,12 +6,12 @@ import {
   LayoutDashboard,
   FolderKanban,
   Users,
-  CreditCard,
   Bot,
   Settings,
 } from "lucide-react"
 
 const items = [
+
   {
     title: "Dashboard",
     href: "/dashboard",
@@ -31,12 +31,6 @@ const items = [
   },
 
   {
-    title: "Payments",
-    href: "/pricing",
-    icon: CreditCard,
-  },
-
-  {
     title: "AI Generator",
     href: "/ai-generator",
     icon: Bot,
@@ -44,40 +38,68 @@ const items = [
 
   {
     title: "Settings",
-    href: "/dashboard",
+    href: "/settings",
     icon: Settings,
   },
+
 ]
 
 export default function DashboardSidebar() {
+
   return (
+
     <aside
       className="
       hidden
+
+      h-screen
       w-72
       flex-col
-      border-r border-white/10
-      bg-white/[0.03]
+
+      border-r
+      border-gray-200
+
+      bg-white
+
       p-6
 
       md:flex
       "
     >
 
-      <h1
-        className="
-        gradient-text
-        text-3xl
-        font-black
-        "
-      >
-        ProjexaHub
-      </h1>
+      {/* LOGO */}
+
+      <div>
+
+        <h1
+          className="
+          text-3xl
+          font-extrabold
+          tracking-tight
+          text-black
+          "
+        >
+          ProjexaHub
+        </h1>
+
+        <p
+          className="
+          mt-2
+          text-sm
+          text-gray-500
+          "
+        >
+          Engineering Project Dashboard
+        </p>
+
+      </div>
+
+      {/* NAVIGATION */}
 
       <nav
         className="
         mt-10
-        space-y-3
+        space-y-2
         "
       >
 
@@ -97,15 +119,17 @@ export default function DashboardSidebar() {
               items-center
               gap-4
 
-              rounded-2xl
-              p-4
+              rounded-xl
 
-              text-slate-300
+              px-4
+              py-3
+
+              text-gray-700
 
               transition
 
-              hover:bg-white/[0.06]
-              hover:text-white
+              hover:bg-gray-100
+              hover:text-black
               "
             >
 
@@ -116,7 +140,9 @@ export default function DashboardSidebar() {
                 "
               />
 
-              {item.title}
+              <span className="font-medium">
+                {item.title}
+              </span>
 
             </Link>
 
@@ -126,6 +152,48 @@ export default function DashboardSidebar() {
 
       </nav>
 
+      {/* FOOTER */}
+
+      <div
+        className="
+        mt-auto
+
+        rounded-2xl
+
+        border
+        border-gray-200
+
+        bg-gray-50
+
+        p-5
+        "
+      >
+
+        <h3
+          className="
+          text-lg
+          font-semibold
+          text-black
+          "
+        >
+          ProjexaHub
+        </h3>
+
+        <p
+          className="
+          mt-2
+          text-sm
+          leading-6
+          text-gray-500
+          "
+        >
+          Manage engineering projects,
+          students and AI tools in one place.
+        </p>
+
+      </div>
+
     </aside>
+
   )
 }

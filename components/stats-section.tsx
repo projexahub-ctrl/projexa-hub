@@ -3,31 +3,57 @@
 import { motion } from "framer-motion"
 
 const stats = [
+
   {
     number: "500+",
     label: "Projects Completed",
   },
+
   {
     number: "120+",
     label: "Colleges Connected",
   },
+
   {
     number: "24/7",
     label: "Technical Support",
   },
+
   {
     number: "98%",
     label: "Client Satisfaction",
   },
+
 ]
 
 export default function StatsSection() {
+
   return (
-    <section className="relative py-32">
 
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      className="
+      bg-white
+      py-24
+      "
+    >
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div
+        className="
+        mx-auto
+        max-w-7xl
+        px-6
+        "
+      >
+
+        <div
+          className="
+          grid
+          gap-8
+
+          md:grid-cols-2
+          lg:grid-cols-4
+          "
+        >
 
           {stats.map((stat, index) => (
 
@@ -36,7 +62,7 @@ export default function StatsSection() {
 
               initial={{
                 opacity: 0,
-                y: 50,
+                y: 30,
               }}
 
               whileInView={{
@@ -45,7 +71,7 @@ export default function StatsSection() {
               }}
 
               transition={{
-                duration: 0.6,
+                duration: 0.5,
                 delay: index * 0.1,
               }}
 
@@ -54,24 +80,39 @@ export default function StatsSection() {
               }}
 
               className="
-              glass
               rounded-3xl
+              border
+              border-gray-200
+              bg-gray-50
               p-10
               text-center
-              hover:-translate-y-2
-              transition
+
+              transition-all
+              duration-300
+
+              hover:-translate-y-1
+              hover:shadow-xl
               "
             >
 
-              <h2 className="
-              gradient-text
-              text-5xl
-              font-black
-              ">
+              <h2
+                className="
+                text-5xl
+                font-extrabold
+                tracking-tight
+                text-black
+                "
+              >
                 {stat.number}
               </h2>
 
-              <p className="mt-4 text-slate-400">
+              <p
+                className="
+                mt-4
+                text-lg
+                text-gray-600
+                "
+              >
                 {stat.label}
               </p>
 
@@ -84,5 +125,6 @@ export default function StatsSection() {
       </div>
 
     </section>
+
   )
 }

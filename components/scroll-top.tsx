@@ -10,38 +10,75 @@ export default function ScrollTop() {
   useEffect(() => {
 
     function handleScroll() {
+
       setVisible(window.scrollY > 300)
+
     }
 
     window.addEventListener("scroll", handleScroll)
 
     return () =>
+
       window.removeEventListener("scroll", handleScroll)
 
   }, [])
 
   function scrollTop() {
+
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     })
+
   }
 
   if (!visible) return null
 
   return (
+
     <button
       onClick={scrollTop}
+
       className="
-      fixed bottom-24 right-6 z-50
-      flex h-14 w-14 items-center justify-center
+      fixed
+      bottom-24
+      right-6
+      z-50
+
+      flex
+      h-12
+      w-12
+      items-center
+      justify-center
+
       rounded-full
-      bg-gradient-to-r from-blue-600 to-purple-600
-      shadow-2xl
-      transition hover:scale-110
+
+      border
+      border-gray-200
+
+      bg-white
+
+      text-black
+
+      shadow-lg
+
+      transition-all
+      duration-300
+
+      hover:-translate-y-1
+      hover:bg-black
+      hover:text-white
       "
     >
-      <ArrowUp className="h-6 w-6 text-white" />
+
+      <ArrowUp
+        className="
+        h-5
+        w-5
+        "
+      />
+
     </button>
+
   )
 }

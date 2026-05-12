@@ -14,34 +14,121 @@ import { Button } from "@/components/ui/button"
 
 export default function AIGeneratorPage() {
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] =
+    useState(false)
 
-  const [generated, setGenerated] = useState(false)
+  const [description, setDescription] =
+    useState("")
 
-  function generateProject() {
+  const [department, setDepartment] =
+    useState("Mechanical Engineering")
 
-    setLoading(true)
+  const [budget, setBudget] =
+    useState("")
 
-    setGenerated(false)
+  const [generatedProject,
+    setGeneratedProject] =
+    useState<any>(null)
 
-    setTimeout(() => {
+  // GENERATE PROJECT
+
+  async function handleGenerateProject() {
+
+    try {
+
+      setLoading(true)
+
+      setGeneratedProject(null)
+
+      const response =
+        await fetch(
+
+          "/api/generate-project",
+
+          {
+
+            method: "POST",
+
+            headers: {
+
+              "Content-Type":
+                "application/json",
+
+            },
+
+            body: JSON.stringify({
+
+              prompt:
+                description,
+
+              department,
+
+              budget,
+
+            }),
+
+          }
+        )
+
+      const data =
+        await response.json()
+
+      console.log(
+        "FRONTEND RESPONSE:"
+      )
+
+      console.log(data)
+
+      // DISPLAY PROJECT
+
+      if (data.project) {
+
+        setGeneratedProject(
+          data.project
+        )
+
+      }
+
+      else {
+
+        alert(
+
+          data.message ||
+
+          "Failed to generate project"
+
+        )
+
+      }
+
+    } catch (error) {
+
+      console.log(
+        "FRONTEND ERROR:"
+      )
+
+      console.log(error)
+
+      alert(
+        "Something went wrong"
+      )
+
+    } finally {
 
       setLoading(false)
 
-      setGenerated(true)
-
-    }, 2500)
+    }
 
   }
 
   return (
+
     <main
       className="
       min-h-screen
-      bg-[#060816]
+      bg-gray-50
       px-6
       py-32
-      text-white
       "
     >
 
@@ -51,6 +138,8 @@ export default function AIGeneratorPage() {
         max-w-6xl
         "
       >
+
+        {/* HEADER */}
 
         <div className="text-center">
 
@@ -62,12 +151,8 @@ export default function AIGeneratorPage() {
             w-20
             items-center
             justify-center
-
             rounded-3xl
-
-            bg-gradient-to-r
-            from-blue-600
-            to-purple-600
+            bg-black
             "
           >
 
@@ -85,73 +170,93 @@ export default function AIGeneratorPage() {
             className="
             mt-8
             text-5xl
-            font-black
-
+            font-bold
+            text-gray-900
             md:text-7xl
             "
           >
-
-            AI Project{" "}
-
-            <span className="gradient-text">
-              Generator
-            </span>
-
+            AI Project Generator
           </h1>
 
           <p
             className="
+            mx-auto
             mt-6
+            max-w-3xl
             text-lg
-            text-slate-400
+            leading-8
+            text-gray-600
             "
           >
-            Generate innovative engineering project ideas instantly using AI.
+            Generate innovative engineering project ideas instantly
+            using artificial intelligence and smart recommendations.
           </p>
 
         </div>
 
+        {/* FORM */}
+
         <div
           className="
-          glass
           mt-16
-          rounded-[40px]
+          rounded-3xl
+          border
+          border-gray-200
+          bg-white
           p-10
+          shadow-sm
           "
         >
 
           <div
             className="
-            grid gap-6
+            grid
+            gap-6
             md:grid-cols-2
             "
           >
 
             <input
-              placeholder="Enter project domain..."
+              value={description}
+
+              onChange={(e) =>
+                setDescription(
+                  e.target.value
+                )
+              }
+
+              placeholder="Enter your project idea or requirements..."
 
               className="
-              rounded-2xl
-              border border-white/10
-              bg-white/[0.05]
-
-              p-5
-              text-white
-
+              rounded-xl
+              border
+              border-gray-300
+              bg-white
+              p-4
+              text-black
               outline-none
+              focus:border-black
               "
             />
 
             <select
+              value={department}
+
+              onChange={(e) =>
+                setDepartment(
+                  e.target.value
+                )
+              }
+
               className="
-              rounded-2xl
-              border border-white/10
-              bg-[#0f172a]
-
-              p-5
-              text-white
-
+              rounded-xl
+              border
+              border-gray-300
+              bg-white
+              p-4
+              text-black
               outline-none
+              focus:border-black
               "
             >
 
@@ -171,43 +276,59 @@ export default function AIGeneratorPage() {
                 IoT
               </option>
 
+              <option>
+                ECE
+              </option>
+
+              <option>
+                EEE
+              </option>
+
+              <option>
+                Civil Engineering
+              </option>
+
             </select>
 
             <input
+              value={budget}
+
+              onChange={(e) =>
+                setBudget(
+                  e.target.value
+                )
+              }
+
               placeholder="Budget Range"
 
               className="
-              rounded-2xl
-              border border-white/10
-              bg-white/[0.05]
-
-              p-5
-              text-white
-
+              rounded-xl
+              border
+              border-gray-300
+              bg-white
+              p-4
+              text-black
               outline-none
+              focus:border-black
               "
             />
 
           </div>
 
           <Button
-            onClick={generateProject}
+            onClick={
+              handleGenerateProject
+            }
 
             className="
             mt-8
             w-full
-
-            rounded-2xl
-
-            bg-gradient-to-r
-            from-blue-600
-            to-purple-600
-
+            rounded-xl
+            bg-black
             py-6
             text-lg
-
-            transition
-            hover:scale-[1.01]
+            text-white
+            hover:bg-gray-800
             "
           >
 
@@ -219,15 +340,20 @@ export default function AIGeneratorPage() {
 
         </div>
 
+        {/* LOADING */}
+
         {loading && (
 
           <div
             className="
-            glass
             mt-10
-            rounded-[40px]
+            rounded-3xl
+            border
+            border-gray-200
+            bg-white
             p-10
             text-center
+            shadow-sm
             "
           >
 
@@ -236,12 +362,10 @@ export default function AIGeneratorPage() {
               mx-auto
               h-16
               w-16
-
               animate-spin
-
               rounded-full
               border-4
-              border-blue-500
+              border-black
               border-t-transparent
               "
             />
@@ -250,7 +374,8 @@ export default function AIGeneratorPage() {
               className="
               mt-8
               text-3xl
-              font-black
+              font-bold
+              text-black
               "
             >
               AI is generating project idea...
@@ -259,7 +384,7 @@ export default function AIGeneratorPage() {
             <p
               className="
               mt-4
-              text-slate-400
+              text-gray-500
               "
             >
               Analyzing engineering trends and innovations.
@@ -269,16 +394,23 @@ export default function AIGeneratorPage() {
 
         )}
 
-        {generated && (
+        {/* GENERATED RESULT */}
+
+        {generatedProject && !loading && (
 
           <div
             className="
-            glass
             mt-12
-            rounded-[40px]
+            rounded-3xl
+            border
+            border-gray-200
+            bg-white
             p-10
+            shadow-sm
             "
           >
+
+            {/* TOP */}
 
             <div
               className="
@@ -295,12 +427,8 @@ export default function AIGeneratorPage() {
                 w-16
                 items-center
                 justify-center
-
                 rounded-2xl
-
-                bg-gradient-to-r
-                from-blue-600
-                to-purple-600
+                bg-black
                 "
               >
 
@@ -318,7 +446,7 @@ export default function AIGeneratorPage() {
 
                 <p
                   className="
-                  text-slate-400
+                  text-gray-500
                   "
                 >
                   AI Generated Idea
@@ -328,47 +456,58 @@ export default function AIGeneratorPage() {
                   className="
                   mt-1
                   text-4xl
-                  font-black
+                  font-bold
+                  text-black
                   "
                 >
-                  AI Smart Waste Management System
+                  {generatedProject.title}
                 </h2>
 
               </div>
 
             </div>
 
+            {/* DESCRIPTION */}
+
             <p
               className="
               mt-8
               text-lg
-              leading-relaxed
-              text-slate-400
+              leading-8
+              text-gray-600
               "
             >
-              Intelligent waste management system using IoT sensors and AI analytics to optimize garbage collection and improve smart city infrastructure.
+              {generatedProject.description}
             </p>
+
+            {/* INFO */}
 
             <div
               className="
               mt-10
-              grid gap-6
-
+              grid
+              gap-6
               md:grid-cols-2
               "
             >
 
+              {/* TECH */}
+
               <div
                 className="
-                rounded-3xl
-                bg-white/[0.04]
+                rounded-2xl
+                border
+                border-gray-200
+                bg-gray-50
                 p-6
                 "
               >
 
                 <div
                   className="
-                  flex items-center gap-4
+                  flex
+                  items-center
+                  gap-4
                   "
                 >
 
@@ -376,7 +515,7 @@ export default function AIGeneratorPage() {
                     className="
                     h-8
                     w-8
-                    text-blue-400
+                    text-black
                     "
                   />
 
@@ -384,7 +523,7 @@ export default function AIGeneratorPage() {
 
                     <p
                       className="
-                      text-slate-400
+                      text-gray-500
                       "
                     >
                       Technologies
@@ -394,10 +533,11 @@ export default function AIGeneratorPage() {
                       className="
                       mt-2
                       text-xl
-                      font-bold
+                      font-semibold
+                      text-black
                       "
                     >
-                      IoT + AI + Cloud
+                      {generatedProject.technologies}
                     </h3>
 
                   </div>
@@ -406,17 +546,23 @@ export default function AIGeneratorPage() {
 
               </div>
 
+              {/* BUDGET */}
+
               <div
                 className="
-                rounded-3xl
-                bg-white/[0.04]
+                rounded-2xl
+                border
+                border-gray-200
+                bg-gray-50
                 p-6
                 "
               >
 
                 <div
                   className="
-                  flex items-center gap-4
+                  flex
+                  items-center
+                  gap-4
                   "
                 >
 
@@ -424,7 +570,7 @@ export default function AIGeneratorPage() {
                     className="
                     h-8
                     w-8
-                    text-green-400
+                    text-black
                     "
                   />
 
@@ -432,7 +578,7 @@ export default function AIGeneratorPage() {
 
                     <p
                       className="
-                      text-slate-400
+                      text-gray-500
                       "
                     >
                       Estimated Budget
@@ -442,10 +588,11 @@ export default function AIGeneratorPage() {
                       className="
                       mt-2
                       text-xl
-                      font-bold
+                      font-semibold
+                      text-black
                       "
                     >
-                      ₹12,000 - ₹18,000
+                      {generatedProject.budget}
                     </h3>
 
                   </div>
@@ -456,11 +603,15 @@ export default function AIGeneratorPage() {
 
             </div>
 
+            {/* FEATURES */}
+
             <div
               className="
               mt-10
-              rounded-3xl
-              bg-white/[0.04]
+              rounded-2xl
+              border
+              border-gray-200
+              bg-gray-50
               p-8
               "
             >
@@ -468,57 +619,131 @@ export default function AIGeneratorPage() {
               <h3
                 className="
                 text-2xl
-                font-black
+                font-bold
+                text-black
                 "
               >
-                Components Required
+                Key Features
               </h3>
 
               <div
                 className="
                 mt-6
-                grid gap-4
-
+                grid
+                gap-4
                 md:grid-cols-2
                 "
               >
 
-                {[
-                  "ESP32",
-                  "Ultrasonic Sensors",
-                  "GSM Module",
-                  "GPS Module",
-                  "Cloud Dashboard",
-                  "Battery Pack",
-                ].map((item, index) => (
+                {generatedProject.features?.map(
+                  (
+                    item: string,
+                    index: number
+                  ) => (
 
-                  <div
-                    key={index}
+                    <div
+                      key={index}
 
-                    className="
-                    flex items-center gap-3
-                    "
-                  >
-
-                    <CheckCircle2
                       className="
-                      h-5
-                      w-5
-                      text-green-400
-                      "
-                    />
-
-                    <span
-                      className="
-                      text-slate-300
+                      flex
+                      items-center
+                      gap-3
                       "
                     >
-                      {item}
-                    </span>
 
-                  </div>
+                      <CheckCircle2
+                        className="
+                        h-5
+                        w-5
+                        text-green-600
+                        "
+                      />
 
-                ))}
+                      <span
+                        className="
+                        text-gray-700
+                        "
+                      >
+                        {item}
+                      </span>
+
+                    </div>
+
+                  )
+                )}
+
+              </div>
+
+            </div>
+
+            {/* COMPONENTS */}
+
+            <div
+              className="
+              mt-10
+              rounded-2xl
+              border
+              border-gray-200
+              bg-gray-50
+              p-8
+              "
+            >
+
+              <h3
+                className="
+                text-2xl
+                font-bold
+                text-black
+                "
+              >
+                Required Components
+              </h3>
+
+              <div
+                className="
+                mt-6
+                grid
+                gap-4
+                md:grid-cols-2
+                "
+              >
+
+                {generatedProject.components?.map(
+                  (
+                    item: string,
+                    index: number
+                  ) => (
+
+                    <div
+                      key={index}
+
+                      className="
+                      flex
+                      items-center
+                      gap-3
+                      "
+                    >
+
+                      <CheckCircle2
+                        className="
+                        h-5
+                        w-5
+                        text-blue-600
+                        "
+                      />
+
+                      <span
+                        className="
+                        text-gray-700
+                        "
+                      >
+                        {item}
+                      </span>
+
+                    </div>
+
+                  )
+                )}
 
               </div>
 
@@ -531,5 +756,7 @@ export default function AIGeneratorPage() {
       </div>
 
     </main>
+
   )
+
 }
