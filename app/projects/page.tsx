@@ -23,7 +23,7 @@ import {
 import {
   auth,
   db,
-} from "@/app/lib/firebase"
+} from "@/lib/firebase"
 
 export default function ProjectsPage() {
 

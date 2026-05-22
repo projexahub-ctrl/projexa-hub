@@ -11,7 +11,7 @@ import {
   User,
 } from "firebase/auth"
 
-import { auth } from "@/app/lib/firebase"
+import { auth } from "@/lib/firebase"
 
 import {
   Rocket,

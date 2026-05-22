@@ -17,7 +17,7 @@ import {
 } from "firebase/firestore"
 
 import { db }
-from "@/app/lib/firebase"
+from "@/lib/firebase"
 
 export default function ProjectDetailsPage() {
 

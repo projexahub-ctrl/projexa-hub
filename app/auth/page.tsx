@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation"
 import {
   auth,
   db,
-} from "../lib/firebase"
+} from "../../lib/firebase"
 
 import { Button } from "@/components/ui/button"
 
