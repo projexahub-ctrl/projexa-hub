@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import {
   Camera,
-  LinkIcon,
+  MessageCircle,
   Mail,
   Phone,
 } from "lucide-react"
@@ -17,7 +17,7 @@ export default function Footer() {
       border-gray-200
       bg-white
       px-6
-      py-20
+      py-16
       text-black
       "
     >
@@ -33,7 +33,6 @@ export default function Footer() {
           className="
           grid
           gap-12
-
           md:grid-cols-4
           "
         >
@@ -60,10 +59,10 @@ export default function Footer() {
               text-gray-600
               "
             >
-              Transforming engineering ideas into
-              real-world innovations with premium
-              final year project solutions and
-              technical support.
+              ProjexaHub helps students and innovators
+              build engineering projects, AI systems,
+              IoT products and smart prototypes with
+              complete technical support.
             </p>
 
           </div>
@@ -211,7 +210,7 @@ export default function Footer() {
                 <Phone className="h-5 w-5" />
 
                 <p>
-                  +91 9999999999
+                  +91 9035964554
                 </p>
 
               </div>
@@ -227,7 +226,8 @@ export default function Footer() {
               >
 
                 <a
-                  href="#"
+                  href="https://instagram.com/projexahub"
+                  target="_blank"
 
                   className="
                   flex
@@ -252,7 +252,8 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://wa.me/8088046553"
+                  target="_blank"
 
                   className="
                   flex
@@ -272,7 +273,7 @@ export default function Footer() {
                   "
                 >
 
-                  <LinkIcon className="h-5 w-5" />
+                  <MessageCircle className="h-5 w-5" />
 
                 </a>
 
